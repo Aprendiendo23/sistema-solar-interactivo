@@ -825,140 +825,67 @@ body {
 /* Modal - Simple y funcional */
 .modal {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.8);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.2s, visibility 0.2s;
+    background: rgba(0, 0, 0, 0.85);
 }
 
-.modal.active {
-    visibility: visible;
-    opacity: 1;
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .modal-content {
+    position: relative;
     background: var(--surface-container);
     border: 1px solid var(--outline-variant);
     border-radius: 1rem;
     padding: 1.5rem;
-    max-width: 600px;
-    width: 100%;
-    max-height: 90vh;
+    max-width: 550px;
+    width: 90%;
+    max-height: 85vh;
     overflow-y: auto;
+    color: var(--primary);
 }
 
 .modal-close {
-    float: right;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
     background: none;
     border: none;
-    color: var(--primary);
+    color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.5rem;
-}
-
-.modal-planet-header {
+    width: 32px;
+    height: 32px;
     display: flex;
-    gap: 1rem;
     align-items: center;
-    margin-bottom: 1rem;
-}
-
-.modal-planet-orb {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.modal-planet-info h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-}
-
-.modal-planet-info p {
-    color: var(--secondary);
-    font-size: 0.9rem;
-}
-
-.modal-stats-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.modal-stat {
-    background: var(--surface-container-low);
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    min-width: 120px;
-    flex: 1 1 calc(33% - 0.5rem);
-}
-
-.modal-stat-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-stat-value {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--primary);
-}
-
-.modal-stat-label {
-    font-size: 0.65rem;
-    color: var(--secondary);
-    text-transform: uppercase;
+    justify-content: center;
 }
 
 /* Modal responsive */
 @media (max-width: 480px) {
-    .modal {
-        padding: 0;
-        align-items: flex-end;
-    }
-    
     .modal-content {
-        max-height: 80vh;
-        border-radius: 1rem 1rem 0 0;
-        padding: 1rem;
-    }
-    
-    .modal-planet-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .modal-planet-orb {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .modal-stat {
-        flex: 1 1 calc(50% - 0.5rem);
-        min-width: auto;
-    }
-}
-
-@media (max-width: 360px) {
-    .modal-stat {
-        flex: 1 1 100%;
+        width: 95%;
+        max-height: 90vh;
     }
 }
 
 .planet-dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    box-shadow: 0 0 10px currentColor;
-    animation: pulse-glow 2s ease-in-out infinite;
+    background: currentColor;
 }
 
 /* Toast */
