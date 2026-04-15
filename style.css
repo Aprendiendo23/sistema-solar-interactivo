@@ -422,7 +422,6 @@ body {
     object-fit: cover;
     mix-blend-mode: screen;
     opacity: 0.9;
-    animation: float 10s ease-in-out infinite;
 }
 
 .planet-glow {
@@ -437,6 +436,11 @@ body {
     border-radius: 50%;
     border: 1px solid var(--outline-variant);
     pointer-events: none;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .orbit-1 { width: 100%; height: 100%; animation: spin 40s linear infinite; }
@@ -798,80 +802,6 @@ body {
     color: var(--secondary);
     text-decoration: none;
     font-size: 0.9rem;
-}
-
-/* FAB */
-.fab {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    z-index: 100;
-    box-shadow: 0 0 30px var(--surface-tint-glow);
-}
-
-/* Animations */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes rocket-shake {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(2px, -2px); }
-    50% { transform: translate(-2px, 2px); }
-    75% { transform: translate(2px, 2px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes rocket-launch {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-100vh); }
-}
-
-.rocket-active {
-    animation: rocket-shake 0.1s infinite;
-}
-
-.rocket-launching {
-    animation: rocket-launch 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
-}
-
-.fab::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 40px;
-    background: radial-gradient(ellipse at top, #ffcc00, transparent 70%);
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    filter: blur(5px);
-    z-index: -1;
-}
-
-.fab.engine-on::before {
-    opacity: 1;
-    animation: fire-pulse 0.2s infinite;
-}
-
-@keyframes fire-pulse {
-    0%, 100% { transform: translateX(-50%) scaleY(1); opacity: 0.8; }
-    50% { transform: translateX(-50%) scaleY(1.5); opacity: 1; }
-}
-
-.hover-lift:hover {
-    transform: translateY(-5px);
 }
 
 /* Planet Table - Sin efectos */
