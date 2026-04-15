@@ -19,6 +19,57 @@ async function supabaseQuery(table, options = {}) {
 
 let planetsData = [];
 
+const localPlanetsData = [
+    { nombre: 'Mercurio', distancia_ua: 0.39, diametro_km: 4879, rotacion: '59 días', traslacion: '88 días', lunas: 0 },
+    { nombre: 'Venus', distancia_ua: 0.72, diametro_km: 12104, rotacion: '243 días', traslacion: '225 días', lunas: 0 },
+    { nombre: 'Tierra', distancia_ua: 1.00, diametro_km: 12756, rotacion: '24 horas', traslacion: '365 días', lunas: 1 },
+    { nombre: 'Marte', distancia_ua: 1.52, diametro_km: 6792, rotacion: '24.6 horas', traslacion: '687 días', lunas: 2 },
+    { nombre: 'Júpiter', distancia_ua: 5.20, diametro_km: 142984, rotacion: '9.9 horas', traslacion: '11.9 años', lunas: 95 },
+    { nombre: 'Saturno', distancia_ua: 9.58, diametro_km: 120536, rotacion: '10.7 horas', traslacion: '29.5 años', lunas: 146 },
+    { nombre: 'Urano', distancia_ua: 19.22, diametro_km: 51118, rotacion: '17.2 horas', traslacion: '84 años', lunas: 27 },
+    { nombre: 'Neptuno', distancia_ua: 30.05, diametro_km: 49528, rotacion: '16.1 horas', traslacion: '165 años', lunas: 16 }
+];
+
+function renderPlanetsTable() {
+    const tbody = document.getElementById('planets-table-body');
+    if (!tbody) return;
+    
+    tbody.innerHTML = planetsData.map((planet) => {
+        const details = planetDetails[planet.nombre] || {};
+        return `
+            <tr class="planet-row" onclick="showPlanetModal('${planet.nombre}')">
+                <td>
+                    <div class="planet-cell">
+                        <span class="planet-dot" style="background: ${details.color || '#888'}"></span>
+                        ${planet.nombre}
+                    </div>
+                </td>
+                <td>${planet.distancia_ua} UA</td>
+                <td>${planet.diametro_km.toLocaleString()} km</td>
+                <td>${planet.rotacion}</td>
+                <td>${planet.traslacion}</td>
+                <td>${planet.lunas}</td>
+            </tr>
+        `;
+    }).join('');
+    
+    const cardsContainer = document.getElementById('planets-cards-container');
+    if (cardsContainer) {
+        cardsContainer.innerHTML = planetsData.map((planet) => {
+            const details = planetDetails[planet.nombre] || {};
+            return `
+                <div class="planet-card-mobile" onclick="showPlanetModal('${planet.nombre}')">
+                    <div class="planet-card-header">
+                        <span class="planet-card-dot" style="background: ${details.color || '#888'}"></span>
+                        <span class="planet-card-name">${planet.nombre}</span>
+                    </div>
+                    <span class="planet-card-hint">Toca para ver datos</span>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
 const quizQuestions = [
     {
         question: "¿Cuál es el planeta más cercano al Sol?",
@@ -249,47 +300,16 @@ async function loadPlanets() {
         console.log('Datos recibidos:', data);
         planetsData = Array.isArray(data) ? data : [];
         
-        if (planetsData.length > 0) {
-            const tbody = document.getElementById('planets-table-body');
-            tbody.innerHTML = planetsData.map((planet, index) => {
-                const details = planetDetails[planet.nombre] || {};
-                return `
-                    <tr class="planet-row" data-planet="${planet.nombre}" onclick="showPlanetModal('${planet.nombre}')">
-                        <td>
-                            <div class="planet-cell">
-                                <span class="planet-dot" style="background: ${details.color || '#888'}"></span>
-                                ${planet.nombre}
-                            </div>
-                        </td>
-                        <td>${planet.distancia_ua} UA</td>
-                        <td>${planet.diametro_km.toLocaleString()} km</td>
-                        <td>${planet.rotacion}</td>
-                        <td>${planet.traslacion}</td>
-                        <td>${planet.lunas}</td>
-                    </tr>
-                `;
-            }).join('');
-            
-            const cardsContainer = document.getElementById('planets-cards-container');
-            cardsContainer.innerHTML = planetsData.map((planet) => {
-                const details = planetDetails[planet.nombre] || {};
-                return `
-                    <div class="planet-card-mobile" data-planet="${planet.nombre}" onclick="showPlanetModal('${planet.nombre}')">
-                        <div class="planet-card-header">
-                            <span class="planet-card-dot" style="background: ${details.color || '#888'}; color: ${details.color || '#888'}"></span>
-                            <span class="planet-card-name">${planet.nombre}</span>
-                        </div>
-                        <span class="planet-card-hint">Toca para ver datos</span>
-                    </div>
-                `;
-            }).join('');
+        if (planetsData.length === 0) {
+            console.log('No se recibieron datos, usando datos locales');
+            planetsData = localPlanetsData;
         }
+        
+        renderPlanetsTable();
     } catch (error) {
         console.error('Error al cargar planetas:', error);
-        document.getElementById('planets-table-body').innerHTML = 
-            '<tr><td colspan="6" class="text-center text-red">Error al cargar datos</td></tr>';
-        document.getElementById('planets-cards-container').innerHTML = 
-            '<p class="text-center text-secondary" style="padding: 2rem;">Error al cargar datos</p>';
+        planetsData = localPlanetsData;
+        renderPlanetsTable();
     }
 }
 
