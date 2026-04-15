@@ -54,7 +54,36 @@ body {
 .container {
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.section {
+    padding: 4rem 1.5rem;
+}
+
+/* Asegurar que todas las secciones llenas el ancho */
+section {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+section .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* Footer también con padding */
+.footer {
+    padding: 3rem 1.5rem;
+}
+
+.footer .container {
+    padding: 0;
+}
+
+.footer-content {
+    padding: 0 1.5rem;
 }
 
 /* Cosmic Background */
@@ -1325,71 +1354,98 @@ body {
     }
 }
 
-/* Pantallas muy pequeñas (320px) */
-@media (max-width: 360px) {
-    * {
-        font-size: 14px;
+/* ========== MÓVIL MEJORADO ========== */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
     }
     
     .section {
-        padding: 3rem 0.75rem;
+        padding: 3rem 1rem;
     }
     
-    .glass-card {
+    .hero {
+        padding: 5rem 1rem 2rem;
+    }
+    
+    .hero-content {
+        padding: 0;
+        border: none;
+    }
+    
+    .glass-card,
+    .bento-item,
+    .curiosity-card,
+    .feature-card,
+    .sun-stat,
+    .p-6,
+    .p-8,
+    .p-12 {
         padding: 1rem;
-        border-radius: 0.75rem;
     }
     
-    .title-sm {
-        font-size: 1.1rem;
+    .badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.6rem;
+    }
+    
+    .title-lg {
+        font-size: 1.75rem;
+    }
+    
+    .title-md {
+        font-size: 1.25rem;
+    }
+    
+    .display-lg {
+        font-size: 2rem;
     }
     
     .body-lg {
         font-size: 1rem;
     }
     
+    .body-md {
+        font-size: 0.9rem;
+    }
+    
     .body-sm {
         font-size: 0.8rem;
     }
     
-    .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+    .grid-2,
+    .grid-4 {
+        gap: 1rem;
     }
     
-    .modal-content {
-        width: 98%;
-        padding: 0.75rem;
+    .bento-grid {
+        grid-template-columns: 1fr;
     }
     
-    .table-responsive-wrapper {
-        margin: 0 -0.5rem;
-        padding: 0 0.5rem;
-    }
-}
-
-/* Mejoras de accesibilidad táctil */
-@media (pointer: coarse) {
-    .btn,
-    .btn-icon,
-    .glass-card,
-    .planet-row,
-    .planet-card-mobile,
-    .nav-links a,
-    .accordion summary {
-        min-height: 44px;
+    .curiosity-card {
+        flex-direction: column;
+        gap: 0.75rem;
     }
     
-    .btn-icon {
-        width: 3.5rem;
-        height: 3.5rem;
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
     }
-}
-
-/* Scroll suave mejorado */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .sun-stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .curiosity-stack {
+        gap: 0.75rem;
+    }
 }
 
 /* Evitar overflow horizontal */
@@ -1402,27 +1458,7 @@ html {
         max-width: 100%;
         height: auto;
     }
-    
-    .visual-card img {
-        width: 100%;
-        height: auto;
-    }
 }
-
-/* Orientación landscape en móvil */
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero {
-        min-height: auto;
-        padding-top: 6rem;
-        padding-bottom: 2rem;
-    }
-    
-    .hero-grid {
-        gap: 2rem;
-    }
-    
-    .solar-system-preview {
-        max-width: 200px;
     }
 }
 
