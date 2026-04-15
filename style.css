@@ -1294,6 +1294,70 @@ section .container {
 .justify-center { justify-content: center; }
 .flex-wrap { flex-wrap: wrap; }
 
+/* Crew Grid */
+.crew-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.crew-member {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+}
+
+.crew-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-container);
+}
+
+.crew-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.crew-name {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.crew-role {
+    font-size: 0.75rem;
+    color: var(--primary-container);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@media (max-width: 480px) {
+    .crew-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .crew-photo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .crew-name {
+        font-size: 0.85rem;
+    }
+    
+    .crew-role {
+        font-size: 0.65rem;
+    }
+}
+
 /* Móvil medio */
 @media (min-width: 481px) and (max-width: 768px) {
     .section {
