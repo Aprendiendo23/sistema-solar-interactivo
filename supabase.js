@@ -118,7 +118,7 @@ async function loadPlanets() {
                         <td>${planet.distancia_ua} UA</td>
                         <td>${planet.diametro_km.toLocaleString()} km</td>
                         <td>${planet.rotacion}</td>
-                        <td>${planet.translacion}</td>
+                        <td>${planet.traslacion}</td>
                         <td>${planet.lunas}</td>
                     </tr>
                 `;
@@ -148,7 +148,7 @@ async function loadPlanets() {
                             </div>
                             <div class="planet-card-stat">
                                 <span class="planet-card-stat-label">Traslación</span>
-                                <span class="planet-card-stat-value">${planet.translacion}</span>
+                                <span class="planet-card-stat-value">${planet.traslacion}</span>
                             </div>
                             <div class="planet-card-stat">
                                 <span class="planet-card-stat-label">Lunas</span>
@@ -234,7 +234,7 @@ function showPlanetModal(planetName) {
             <div class="modal-stat glass-card">
                 <span class="material-symbols-outlined">calendar_month</span>
                 <div class="modal-stat-content">
-                    <span class="modal-stat-value">${planet.translacion}</span>
+                    <span class="modal-stat-value">${planet.traslacion}</span>
                     <span class="modal-stat-label">Traslación</span>
                 </div>
             </div>
@@ -271,7 +271,7 @@ function downloadPlanetsData() {
             p.distancia_ua,
             p.diametro_km,
             p.rotacion,
-            p.translacion,
+            p.traslacion,
             p.lunas
         ].join(','))
     ].join('\n');
