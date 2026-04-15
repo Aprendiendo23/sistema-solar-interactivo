@@ -319,7 +319,7 @@ section .container {
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 5rem;
+    height: 4rem;
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -342,13 +342,20 @@ section .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 .logo {
     font-family: var(--font-headline);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -0.03em;
+}
+
+@media (max-width: 767px) {
+    .navbar-content {
+        padding: 0 1rem;
+    }
 }
 
 .nav-links {
@@ -1210,18 +1217,18 @@ section .container {
 /* Responsive Table Improvements */
 @media (max-width: 768px) {
     .data-table {
-        font-size: 0.75rem;
-        min-width: 500px;
+        font-size: 0.7rem;
+        min-width: 480px;
     }
     
     .data-table th,
     .data-table td {
-        padding: 0.75rem 0.5rem;
+        padding: 0.6rem 0.4rem;
         white-space: nowrap;
     }
     
     .data-table th {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 }
 
@@ -1229,6 +1236,21 @@ section .container {
 .table-responsive-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-container) var(--surface-container-low);
+}
+
+.table-responsive-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-responsive-wrapper::-webkit-scrollbar-track {
+    background: var(--surface-container-low);
+}
+
+.table-responsive-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary-container);
+    border-radius: 3px;
 }
 
 .table-cards-view {
