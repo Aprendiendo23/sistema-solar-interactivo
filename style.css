@@ -568,34 +568,44 @@ body {
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 2rem;
-    min-width: 800px;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
 .data-table th {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.75rem;
     text-align: left;
     font-family: var(--font-headline);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: var(--primary-container);
     border-bottom: 1px solid var(--outline-variant);
 }
 
 .data-table td {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.75rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 0.9rem;
-}
-
-.data-table tr:hover {
-    background: var(--surface-container-low);
 }
 
 .data-table td:first-child {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary);
+}
+
+@media (max-width: 640px) {
+    .data-table {
+        font-size: 0.8rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .data-table th {
+        font-size: 0.6rem;
+    }
 }
 
 /* Bento Grid */
@@ -864,11 +874,145 @@ body {
     transform: translateY(-5px);
 }
 
-/* Planet Table Enhancements */
+/* Planet Table - Sin efectos */
 .planet-cell {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+}
+
+.planet-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.planet-row {
+    cursor: pointer;
+}
+
+/* Modal - Simple y funcional */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background: var(--surface-container);
+    border: 1px solid var(--outline-variant);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    float: right;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.modal-planet-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.modal-planet-orb {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.modal-planet-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.modal-planet-info p {
+    color: var(--secondary);
+    font-size: 0.9rem;
+}
+
+.modal-stats-grid {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
+}
+
+.modal-stat {
+    background: var(--surface-container-low);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    min-width: 120px;
+    flex: 1 1 calc(33% - 0.5rem);
+}
+
+.modal-stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-stat-value {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary);
+}
+
+.modal-stat-label {
+    font-size: 0.65rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+}
+
+/* Modal responsive */
+@media (max-width: 480px) {
+    .modal {
+        padding: 0;
+        align-items: flex-end;
+    }
+    
+    .modal-content {
+        max-height: 80vh;
+        border-radius: 1rem 1rem 0 0;
+        padding: 1rem;
+    }
+    
+    .modal-planet-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .modal-planet-orb {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .modal-stat {
+        flex: 1 1 calc(50% - 0.5rem);
+        min-width: auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .modal-stat {
+        flex: 1 1 100%;
+    }
 }
 
 .planet-dot {
@@ -1304,19 +1448,10 @@ body {
 .table-responsive-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin: 0 -1rem;
-    padding: 0 1rem;
 }
 
 .table-cards-view {
     display: none !important;
-}
-
-@media (max-width: 480px) {
-    .table-responsive-wrapper {
-        margin: 0 -0.5rem;
-        padding: 0 0.5rem;
-    }
 }
 
 /* Interactive Solar System Preview */
