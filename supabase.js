@@ -95,12 +95,14 @@ const planetDetails = {
 };
 
 async function loadPlanets() {
+    console.log('Cargando planetas...');
     try {
         const data = await supabaseQuery('planetas', {
             select: '*',
             order: 'distancia_ua.asc'
         });
         
+        console.log('Datos recibidos:', data);
         planetsData = Array.isArray(data) ? data : [];
         
         if (planetsData.length > 0) {
@@ -143,9 +145,9 @@ async function loadPlanets() {
     } catch (error) {
         console.error('Error al cargar planetas:', error);
         document.getElementById('planets-table-body').innerHTML = 
-            '<tr><td colspan="6" class="text-center text-red">Error al cargar datos. Recarga la página.</td></tr>';
+            '<tr><td colspan="6" class="text-center text-red">Error al cargar datos</td></tr>';
         document.getElementById('planets-cards-container').innerHTML = 
-            '<p class="text-center text-secondary" style="padding: 2rem;">Error al cargar datos. Recarga la página.</p>';
+            '<p class="text-center text-secondary" style="padding: 2rem;">Error al cargar datos</p>';
     }
 }
 
