@@ -159,12 +159,7 @@ async function loadPlanets() {
                 `;
             }).join('');
             
-            document.querySelectorAll('.planet-row, .planet-card-mobile').forEach(row => {
-                row.addEventListener('click', () => {
-                    const planetName = row.dataset.planet;
-                    showPlanetModal(planetName);
-                });
-            });
+            attachPlanetClickHandlers();
         }
     } catch (error) {
         console.error('Error al cargar planetas:', error);
@@ -173,6 +168,17 @@ async function loadPlanets() {
         document.getElementById('planets-cards-container').innerHTML = 
             '<p class="text-center text-secondary" style="padding: 2rem;">Error al cargar datos. Recarga la página.</p>';
     }
+}
+
+function attachPlanetClickHandlers() {
+    setTimeout(() => {
+        document.querySelectorAll('.planet-row').forEach(row => {
+            row.onclick = () => showPlanetModal(row.dataset.planet);
+        });
+        document.querySelectorAll('.planet-card-mobile').forEach(card => {
+            card.onclick = () => showPlanetModal(card.dataset.planet);
+        });
+    }, 100);
 }
 
 function showPlanetModal(planetName) {
