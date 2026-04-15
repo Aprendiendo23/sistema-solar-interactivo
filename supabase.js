@@ -10,7 +10,8 @@ async function supabaseQuery(table, options = {}) {
     const response = await fetch(url, {
         headers: {
             'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Origin': 'https://aprendiendo23.github.io'
         }
     });
     return response.json();
