@@ -389,4 +389,6 @@ function showToast(message) {
     }, 3000);
 }
 
+document.addEventListener('DOMContentLoaded', loadPlanets);
+
 
