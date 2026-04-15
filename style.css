@@ -1212,6 +1212,7 @@ body {
 @media (max-width: 768px) {
     .data-table {
         font-size: 0.8rem;
+        min-width: 600px;
     }
     
     .data-table th,
@@ -1228,6 +1229,100 @@ body {
         flex-direction: column;
         text-align: center;
     }
+}
+
+/* Mobile Cards View for Table */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+}
+
+@media (max-width: 640px) {
+    .table-cards-view {
+        display: flex !important;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 100%;
+    }
+    
+    .table-cards-view .data-table,
+    .table-cards-view thead,
+    .table-cards-view tbody,
+    .table-cards-view th,
+    .table-cards-view td,
+    .table-cards-view tr {
+        display: none !important;
+    }
+    
+    .planet-card-mobile {
+        display: flex !important;
+        background: var(--surface-container);
+        border: 1px solid var(--outline-variant);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        flex-direction: column;
+        gap: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .planet-card-mobile:hover {
+        border-color: var(--primary-container);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .planet-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .planet-card-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px currentColor;
+    }
+    
+    .planet-card-name {
+        font-family: var(--font-headline);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+    
+    .planet-card-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .planet-card-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .planet-card-stat-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--secondary);
+    }
+    
+    .planet-card-stat-value {
+        font-family: var(--font-headline);
+        font-weight: 600;
+        color: var(--on-surface);
+    }
+}
+
+.table-cards-view,
+.planet-card-mobile {
+    display: none;
 }
 
 /* Interactive Solar System Preview */

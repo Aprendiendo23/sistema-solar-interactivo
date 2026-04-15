@@ -81,47 +81,85 @@ const planetDetails = {
 };
 
 async function loadPlanets() {
-    const { data, error } = await supabase
-        .from('planetas')
-        .select('*')
-        .order('distancia_ua', { ascending: true });
-    
-    if (error) {
+    try {
+        const { data, error } = await supabase
+            .from('planetas')
+            .select('*')
+            .order('distancia_ua', { ascending: true });
+        
+        if (error) throw error;
+        
+        planetsData = data || [];
+        
+        if (planetsData.length > 0) {
+            const tbody = document.getElementById('planets-table-body');
+            tbody.innerHTML = planetsData.map((planet, index) => {
+                const details = planetDetails[planet.nombre] || {};
+                return `
+                    <tr class="planet-row" data-planet="${planet.nombre}" data-index="${index}">
+                        <td>
+                            <div class="planet-cell">
+                                <span class="planet-dot" style="background: ${details.color || '#888'}"></span>
+                                ${planet.nombre}
+                            </div>
+                        </td>
+                        <td>${planet.distancia_ua} UA</td>
+                        <td>${planet.diametro_km.toLocaleString()} km</td>
+                        <td>${planet.rotacion}</td>
+                        <td>${planet.translacion}</td>
+                        <td>${planet.lunas}</td>
+                    </tr>
+                `;
+            }).join('');
+            
+            const cardsContainer = document.getElementById('planets-cards-container');
+            cardsContainer.innerHTML = planetsData.map((planet) => {
+                const details = planetDetails[planet.nombre] || {};
+                return `
+                    <div class="planet-card-mobile" data-planet="${planet.nombre}">
+                        <div class="planet-card-header">
+                            <span class="planet-card-dot" style="background: ${details.color || '#888'}; color: ${details.color || '#888'}"></span>
+                            <span class="planet-card-name">${planet.nombre}</span>
+                        </div>
+                        <div class="planet-card-stats">
+                            <div class="planet-card-stat">
+                                <span class="planet-card-stat-label">Distancia</span>
+                                <span class="planet-card-stat-value">${planet.distancia_ua} UA</span>
+                            </div>
+                            <div class="planet-card-stat">
+                                <span class="planet-card-stat-label">Diámetro</span>
+                                <span class="planet-card-stat-value">${planet.diametro_km.toLocaleString()} km</span>
+                            </div>
+                            <div class="planet-card-stat">
+                                <span class="planet-card-stat-label">Rotación</span>
+                                <span class="planet-card-stat-value">${planet.rotacion}</span>
+                            </div>
+                            <div class="planet-card-stat">
+                                <span class="planet-card-stat-label">Traslación</span>
+                                <span class="planet-card-stat-value">${planet.translacion}</span>
+                            </div>
+                            <div class="planet-card-stat">
+                                <span class="planet-card-stat-label">Lunas</span>
+                                <span class="planet-card-stat-value">${planet.lunas}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.querySelectorAll('.planet-row, .planet-card-mobile').forEach(row => {
+                row.addEventListener('click', () => {
+                    const planetName = row.dataset.planet;
+                    showPlanetModal(planetName);
+                });
+            });
+        }
+    } catch (error) {
         console.error('Error al cargar planetas:', error);
         document.getElementById('planets-table-body').innerHTML = 
-            '<tr><td colspan="6" class="text-center text-red">Error al cargar datos</td></tr>';
-        return;
-    }
-    
-    planetsData = data || [];
-    
-    if (planetsData.length > 0) {
-        const tbody = document.getElementById('planets-table-body');
-        tbody.innerHTML = planetsData.map((planet, index) => {
-            const details = planetDetails[planet.nombre] || {};
-            return `
-                <tr class="planet-row" data-planet="${planet.nombre}" data-index="${index}">
-                    <td>
-                        <div class="planet-cell">
-                            <span class="planet-dot" style="background: ${details.color || '#888'}"></span>
-                            ${planet.nombre}
-                        </div>
-                    </td>
-                    <td>${planet.distancia_ua} UA</td>
-                    <td>${planet.diametro_km.toLocaleString()} km</td>
-                    <td>${planet.rotacion}</td>
-                    <td>${planet.translacion}</td>
-                    <td>${planet.lunas}</td>
-                </tr>
-            `;
-        }).join('');
-        
-        document.querySelectorAll('.planet-row').forEach(row => {
-            row.addEventListener('click', () => {
-                const planetName = row.dataset.planet;
-                showPlanetModal(planetName);
-            });
-        });
+            '<tr><td colspan="6" class="text-center text-red">Error al cargar datos. Recarga la página.</td></tr>';
+        document.getElementById('planets-cards-container').innerHTML = 
+            '<p class="text-center text-secondary" style="padding: 2rem;">Error al cargar datos. Recarga la página.</p>';
     }
 }
 
