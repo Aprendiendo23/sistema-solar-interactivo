@@ -1338,6 +1338,11 @@ section .container {
     letter-spacing: 0.05em;
 }
 
+.artemis-year {
+    color: var(--primary-container);
+    font-weight: 700;
+}
+
 @media (max-width: 480px) {
     .crew-grid {
         grid-template-columns: repeat(2, 1fr);
