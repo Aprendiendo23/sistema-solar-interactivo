@@ -169,25 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
         shareBtn.addEventListener('click', sharePage);
     }
 
-    // Modal close handlers
-    const closeModalBtn = document.getElementById('close-modal');
-    const modal = document.getElementById('planet-modal');
-    const modalBackdrop = document.querySelector('.modal-backdrop');
-    
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closePlanetModal);
-    }
-    
-    if (modalBackdrop) {
-        modalBackdrop.addEventListener('click', closePlanetModal);
-    }
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-            closePlanetModal();
-        }
-    });
-
     // Cursor follower for planets table
     const tableRows = document.querySelectorAll('.planet-row');
     tableRows.forEach(row => {
@@ -230,9 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tooltip) {
                 tooltip.textContent = planetName;
             }
-            
-            // Open modal with planet info
-            showPlanetModal(planetName);
         });
     });
 

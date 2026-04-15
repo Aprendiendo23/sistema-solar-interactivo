@@ -310,4 +310,23 @@ function showToast(message) {
     }, 3000);
 }
 
-document.addEventListener('DOMContentLoaded', loadPlanets);
+document.addEventListener('DOMContentLoaded', () => {
+    loadPlanets();
+    
+    const closeBtn = document.getElementById('close-modal');
+    const backdrop = document.querySelector('.modal-backdrop');
+    
+    if (closeBtn) {
+        closeBtn.onclick = closePlanetModal;
+    }
+    
+    if (backdrop) {
+        backdrop.onclick = closePlanetModal;
+    }
+    
+    document.onkeydown = (e) => {
+        if (e.key === 'Escape') {
+            closePlanetModal();
+        }
+    };
+});
