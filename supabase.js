@@ -133,28 +133,7 @@ async function loadPlanets() {
                             <span class="planet-card-dot" style="background: ${details.color || '#888'}; color: ${details.color || '#888'}"></span>
                             <span class="planet-card-name">${planet.nombre}</span>
                         </div>
-                        <div class="planet-card-stats">
-                            <div class="planet-card-stat">
-                                <span class="planet-card-stat-label">Distancia</span>
-                                <span class="planet-card-stat-value">${planet.distancia_ua} UA</span>
-                            </div>
-                            <div class="planet-card-stat">
-                                <span class="planet-card-stat-label">Diámetro</span>
-                                <span class="planet-card-stat-value">${planet.diametro_km.toLocaleString()} km</span>
-                            </div>
-                            <div class="planet-card-stat">
-                                <span class="planet-card-stat-label">Rotación</span>
-                                <span class="planet-card-stat-value">${planet.rotacion}</span>
-                            </div>
-                            <div class="planet-card-stat">
-                                <span class="planet-card-stat-label">Traslación</span>
-                                <span class="planet-card-stat-value">${planet.traslacion}</span>
-                            </div>
-                            <div class="planet-card-stat">
-                                <span class="planet-card-stat-label">Lunas</span>
-                                <span class="planet-card-stat-value">${planet.lunas}</span>
-                            </div>
-                        </div>
+                        <span class="planet-card-hint">Toca para ver datos</span>
                     </div>
                 `;
             }).join('');
