@@ -18,12 +18,16 @@
     <!-- Cosmic Background Elements -->
     <div class="cosmic-glow glow-1"></div>
     <div class="cosmic-glow glow-2"></div>
+    <div class="nav-overlay" id="nav-overlay"></div>
 
     <nav class="navbar glass">
         <div class="scroll-progress"></div>
         <div class="container navbar-content">
-            <div class="logo"><span class="text-accent">Sistema Solar</span></div>
-            <ul class="nav-links">
+            <a href="index.html" class="logo"><span class="text-accent">Sistema Solar</span></a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <span class="menu-icon"></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html#home" class="active">Inicio</a></li>
                 <li><a href="index.html#origin">Origen</a></li>
                 <li><a href="index.html#sun">El Sol</a></li>
@@ -33,7 +37,7 @@
                 <li><a href="quiz.html">Cuestionario</a></li>
                 <li><a href="index.html#faq">FAQ</a></li>
             </ul>
-            <button class="btn btn-primary">Explorar</button>
+            <a href="index.html#home" class="btn btn-primary desktop-only">Explorar</a>
         </div>
     </nav>
 
@@ -501,5 +505,33 @@
 
     <script src="supabase.js"></script>
     <script src="main.js"></script>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        const navOverlay = document.getElementById('nav-overlay');
+        
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', toggleMenu);
+        }
+        
+        if (navOverlay) {
+            navOverlay.addEventListener('click', toggleMenu);
+        }
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
