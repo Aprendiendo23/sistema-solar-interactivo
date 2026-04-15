@@ -1,8 +1,20 @@
 const SUPABASE_URL = 'https://gzdefxuoneiubpdfbxwo.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_9ozZb-57864iQUBgmw90nQ_Zz8ZyLri';
 
-window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const supabase = window.supabase;
+async function supabaseQuery(table, options = {}) {
+    let url = `${SUPABASE_URL}/rest/v1/${table}?`;
+    if (options.select) url += `select=${options.select}`;
+    if (options.order) url += `&order=${options.order}`;
+    if (options.limit) url += `&limit=${options.limit}`;
+    
+    const response = await fetch(url, {
+        headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+    });
+    return response.json();
+}
 
 let planetsData = [];
 
@@ -83,14 +95,12 @@ const planetDetails = {
 
 async function loadPlanets() {
     try {
-        const { data, error } = await supabase
-            .from('planetas')
-            .select('*')
-            .order('distancia_ua', { ascending: true });
+        const data = await supabaseQuery('planetas', {
+            select: '*',
+            order: 'distancia_ua.asc'
+        });
         
-        if (error) throw error;
-        
-        planetsData = data || [];
+        planetsData = Array.isArray(data) ? data : [];
         
         if (planetsData.length > 0) {
             const tbody = document.getElementById('planets-table-body');
