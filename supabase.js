@@ -162,9 +162,8 @@ function showPlanetModal(planetName) {
     const modal = document.getElementById('planet-modal');
     const modalContent = document.getElementById('modal-planet-content');
     
-    modalContent.innerHTML = '<button onclick="closePlanetModal()" style="float:right;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">×</button>' +
-        '<div style="margin-top:2rem;">' +
-        '<h2 style="color:' + details.color + ';margin-bottom:1rem;">' + planet.nombre + '</h2>' +
+    modalContent.innerHTML = 
+        '<h2 style="color:' + details.color + ';margin-bottom:0.5rem;margin-top:0.5rem;">' + planet.nombre + '</h2>' +
         '<p style="color:#888;margin-bottom:1.5rem;">' + details.description + '</p>' +
         '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">' +
         '<div><strong>Diámetro:</strong> ' + planet.diametro_km.toLocaleString() + ' km</div>' +

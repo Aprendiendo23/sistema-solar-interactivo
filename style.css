@@ -878,7 +878,7 @@ section .container {
     background: var(--surface-container);
     border: 1px solid var(--outline-variant);
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
     max-width: 550px;
     width: 90%;
     max-height: 85vh;
