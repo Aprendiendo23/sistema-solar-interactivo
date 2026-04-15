@@ -168,18 +168,19 @@ function attachPlanetClickHandlers() {
 }
 
 function showPlanetModal(planetName) {
+    console.log('Abriendo modal para:', planetName);
     const planet = planetsData.find(p => p.nombre === planetName);
     const details = planetDetails[planetName];
     
     if (!planet || !details) {
-        console.log('No se encontró el planeta:', planetName);
+        console.log('No se encontró el planeta:', planetName, planetsData);
         return;
     }
     
     const modal = document.getElementById('planet-modal');
     const modalContent = document.getElementById('modal-planet-content');
     
-    modalContent.innerHTML = '<button onclick="closePlanetModal()" style="float:right;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;">×</button>' +
+    modalContent.innerHTML = '<button onclick="closePlanetModal()" style="float:right;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">×</button>' +
         '<div style="margin-top:2rem;">' +
         '<h2 style="color:' + details.color + ';margin-bottom:1rem;">' + planet.nombre + '</h2>' +
         '<p style="color:#888;margin-bottom:1.5rem;">' + details.description + '</p>' +
@@ -194,6 +195,8 @@ function showPlanetModal(planetName) {
         '</div></div>';
     
     modal.style.display = 'flex';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
 }
 
 function closePlanetModal() {
