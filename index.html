@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Curator | El Sistema Solar</title>
+    <meta name="description" content="Una exploración premium y educativa de nuestro sistema solar. Descubre los planetas, el sol y las misiones espaciales más recientes.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-deep-space">
+    <!-- Cosmic Background Elements -->
+    <div class="cosmic-glow glow-1"></div>
+    <div class="cosmic-glow glow-2"></div>
+
+    <nav class="navbar glass">
+        <div class="scroll-progress"></div>
+        <div class="container navbar-content">
+            <div class="logo">Cosmic <span class="text-accent">Curator</span></div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Inicio</a></li>
+                <li><a href="#origin">Origen</a></li>
+                <li><a href="#sun">El Sol</a></li>
+                <li><a href="#planets">Planetas</a></li>
+                <li><a href="#missions">Misiones</a></li>
+                <li><a href="#artemis">Artemis II</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="btn btn-primary">Explorar</button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="badge">Sistema Estelar Local</span>
+                    <h1 class="display-lg">El Sistema <span class="text-gradient">Solar</span></h1>
+                    <p class="body-lg text-secondary">Explorando nuestro vecindario cósmico. Un conjunto armonioso de 8 planetas unidos por la gravedad, trazando órbitas elípticas alrededor de nuestra estrella anfitriona en un rincón remoto de la Vía Láctea.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg">Iniciar Viaje <span class="material-symbols-outlined">rocket_launch</span></button>
+                        <button class="btn btn-glass btn-lg" id="learn-more-btn">Saber más</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="solar-system-preview">
+                        <div class="ss-sun"></div>
+                        <div class="ss-orbits">
+                            <div class="ss-orbit ss-orbit-1"></div>
+                            <div class="ss-orbit ss-orbit-2"></div>
+                            <div class="ss-orbit ss-orbit-3"></div>
+                            <div class="ss-orbit ss-orbit-4"></div>
+                            <div class="ss-orbit ss-orbit-5"></div>
+                            <div class="ss-orbit ss-orbit-6"></div>
+                            <div class="ss-orbit ss-orbit-7"></div>
+                            <div class="ss-orbit ss-orbit-8"></div>
+                        </div>
+                        <div class="ss-planets">
+                            <div class="ss-planet" data-planet="Mercurio" data-color="#A0522D" style="--orbit-duration: 8s; --orbit-size: 8%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                            <div class="ss-planet" data-planet="Venus" data-color="#DEB887" style="--orbit-duration: 12s; --orbit-size: 12%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                            <div class="ss-planet active" data-planet="Tierra" data-color="#4169E1" style="--orbit-duration: 16s; --orbit-size: 16%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                            <div class="ss-planet" data-planet="Marte" data-color="#CD5C5C" style="--orbit-duration: 20s; --orbit-size: 20%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                            <div class="ss-planet" data-planet="Júpiter" data-color="#DAA520" style="--orbit-duration: 30s; --orbit-size: 32%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                            <div class="ss-planet" data-planet="Saturno" data-color="#F4A460" style="--orbit-duration: 40s; --orbit-size: 40%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                            <div class="ss-planet" data-planet="Urano" data-color="#40E0D0" style="--orbit-duration: 50s; --orbit-size: 48%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                            <div class="ss-planet" data-planet="Neptuno" data-color="#4682B4" style="--orbit-duration: 60s; --orbit-size: 55%;">
+                                <div class="ss-planet-dot"></div>
+                            </div>
+                        </div>
+                        <div class="ss-tooltip" id="planet-tooltip"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Origin Section -->
+        <section id="origin" class="section surface-low">
+            <div class="container grid-2">
+                <div class="visual-card glass-card">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAm6c_JpqHI1vOv6U-DklnLaAAxmRYfQNd00XYEf31oJ2ktSpOwHanLzmGVdborWsvklXfp7PyPua78a7YwfLAhiIkdmLoNWGV0rt0zXXU0jZQkcsgMw5XT9BKQWFzPXWozuQU-jy9SOVVwNxiRyHnB-zy1Mj-MwLWwKokDYPuPHUwm5hjdlKqWZNkr6XeDBOfkd1mK-iIDoONR4pZbjl8WvCeOgjcciPlT2iZ7ku2e0uid2t4PS6TVf8rQ0rtr-ajUxYWEIB7P9kB" alt="Nebulosa solar" class="img-responsive rounded-xl">
+                    <div class="card-overlay">
+                        <span class="label">Visualización</span>
+                        <h3 class="title-md">Colapso Gravitacional</h3>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <h2 class="title-lg">La Hipótesis Nebular</h2>
+                    <div class="star-path">
+                        <div class="star-path-progress" style="width: 75%;"></div>
+                        <div class="star-path-head" style="left: 75%;"></div>
+                    </div>
+                    <p class="body-lg text-secondary">Hace aproximadamente <span class="text-accent font-bold">4.600 millones de años</span>, una inmensa nube de gas y polvo interestelar comenzó a colapsar bajo su propia gravedad. Este evento dio origen a un disco protoplanetario en rotación.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card glass-card">
+                            <h3 class="stat-value">99.8%</h3>
+                            <p class="stat-label">De la masa total está en el Sol.</p>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <h3 class="stat-value">4.6B</h3>
+                            <p class="stat-label">Años de evolución cósmica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Sun Section -->
+        <section id="sun" class="section">
+            <div class="container text-center mb-12">
+                <h2 class="title-lg">El Corazón del Sistema: El Sol</h2>
+                <p class="body-md text-secondary max-w-600 mx-auto">Una estrella de tipo espectral G2V que sostiene la vida y el orden orbital de nuestro mundo.</p>
+            </div>
+            <div class="container grid-4">
+                <div class="feature-card glass-card hover-lift sun-card" data-info="caracteristicas">
+                    <div class="icon-box"><span class="material-symbols-outlined">wb_sunny</span></div>
+                    <h4 class="title-sm">Características</h4>
+                    <ul class="feature-list">
+                        <li>Enana Amarilla</li>
+                        <li>73% Hidrógeno</li>
+                        <li>25% Helio</li>
+                    </ul>
+                    <span class="card-arrow"><span class="material-symbols-outlined">arrow_forward</span></span>
+                </div>
+                <div class="feature-card glass-card hover-lift sun-card" data-info="estructura">
+                    <div class="icon-box"><span class="material-symbols-outlined">layers</span></div>
+                    <h4 class="title-sm">Estructura</h4>
+                    <ul class="feature-list">
+                        <li>Núcleo (Fusión)</li>
+                        <li>Zona Radiativa</li>
+                        <li>Zona Convectiva</li>
+                    </ul>
+                    <span class="card-arrow"><span class="material-symbols-outlined">arrow_forward</span></span>
+                </div>
+                <div class="feature-card glass-card hover-lift sun-card" data-info="atmosfera">
+                    <div class="icon-box"><span class="material-symbols-outlined">filter_drama</span></div>
+                    <h4 class="title-sm">Atmósfera</h4>
+                    <ul class="feature-list">
+                        <li>Fotósfera</li>
+                        <li>Cromósfera</li>
+                        <li>Corona Solar</li>
+                    </ul>
+                    <span class="card-arrow"><span class="material-symbols-outlined">arrow_forward</span></span>
+                </div>
+                <div class="feature-card glass-card hover-lift sun-card" data-info="fenomenos">
+                    <div class="icon-box"><span class="material-symbols-outlined">flare</span></div>
+                    <h4 class="title-sm">Fenómenos</h4>
+                    <ul class="feature-list">
+                        <li>Manchas Solares</li>
+                        <li>Llamaradas</li>
+                        <li>Viento Solar</li>
+                    </ul>
+                    <span class="card-arrow"><span class="material-symbols-outlined">arrow_forward</span></span>
+                </div>
+            </div>
+            
+            <!-- Sun Stats -->
+            <div class="container mt-12">
+                <div class="sun-stats glass-card p-8">
+                    <div class="sun-stats-grid">
+                        <div class="sun-stat">
+                            <span class="sun-stat-value">1.989 × 10³⁰ kg</span>
+                            <span class="sun-stat-label">Masa</span>
+                        </div>
+                        <div class="sun-stat">
+                            <span class="sun-stat-value">6.96 × 10⁵ km</span>
+                            <span class="sun-stat-label">Radio</span>
+                        </div>
+                        <div class="sun-stat">
+                            <span class="sun-stat-value">5.778 K</span>
+                            <span class="sun-stat-label">Temperatura Superficial</span>
+                        </div>
+                        <div class="sun-stat">
+                            <span class="sun-stat-value">4.6 × 10⁹ años</span>
+                            <span class="sun-stat-label">Edad Estimada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planet Table Section -->
+        <section id="planets" class="section surface-lowest">
+            <div class="container flex-row justify-between items-end mb-12 gap-8 flex-wrap">
+                <div>
+                    <h2 class="title-lg">Mundos en Órbita</h2>
+                    <p class="body-md text-secondary max-w-600">Comparativa técnica de los ocho planetas. <span class="text-accent">Clic en cualquier planeta para más información.</span></p>
+                </div>
+                <div class="actions">
+                    <button class="btn-icon" id="download-btn" title="Descargar datos CSV">
+                        <span class="material-symbols-outlined">download</span>
+                    </button>
+                    <button class="btn-icon" id="share-btn" title="Compartir">
+                        <span class="material-symbols-outlined">share</span>
+                    </button>
+                </div>
+            </div>
+            <div class="container overflow-x">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Planeta</th>
+                            <th>Distancia (UA)</th>
+                            <th>Diámetro (km)</th>
+                            <th>Rotación</th>
+                            <th>Traslación</th>
+                            <th>Lunas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="planets-table-body">
+                        <tr><td colspan="6" class="text-center text-secondary">Cargando datos...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Planet Modal -->
+        <div id="planet-modal" class="modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content glass-card">
+                <button class="modal-close" id="close-modal">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <div id="modal-planet-content"></div>
+            </div>
+        </div>
+
+        <!-- Bento Grid -->
+        <section class="section">
+            <div class="container">
+                <h2 class="title-md text-center mb-16">Cuerpos Menores y Regiones</h2>
+                <div class="bento-grid">
+                    <div class="bento-item span-2 glass-card">
+                        <div class="bento-content">
+                            <span class="label">ZONAS FRONTERIZAS</span>
+                            <h3 class="title-md">Cinturón de Kuiper & Nube de Oort</h3>
+                            <p class="body-sm text-secondary">Los límites exteriores del sistema solar, hogar de cometas y planetas enanos.</p>
+                        </div>
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4sVRtI3DLPtKQZTxKKnBw5q4Fqk-9CDY3D1_nKCemQa7RDRNS--uLKCfFrY_oQt7AYeds_maB-5N98NY29qvwFxa43FyLqx13gMWtwLPT6EUJPTKSvM4DZbK_8fIMkURaVcb-zh3p8DKAm5Det467TLLc_sEJekXbO7Lo8s-VmnGVqGkwzjhh3SSh_KmTVQZlWhbOyZz9KUNclqkz9IcyCNhGcBf3FPGOFSRN8V4a9fRP3xCcKeIS9PcYEJhsWJJMoCxr8dV3kGyK" alt="Confines del sistema solar" class="bento-img">
+                    </div>
+                    <div class="bento-item glass-card surface-accent-dim">
+                        <h4 class="title-sm">Planetas Enanos</h4>
+                        <ul class="list-minimal">
+                            <li><span>Plutón</span> <span class="text-xs italic">Ex-Noveno</span></li>
+                            <li><span>Ceres</span> <span class="text-xs italic">Cinturón Asteroides</span></li>
+                            <li><span>Eris</span> <span class="text-xs italic">Transneptuniano</span></li>
+                            <li><span>Haumea</span> <span class="text-xs italic">Disco Disperso</span></li>
+                        </ul>
+                    </div>
+                    <div class="bento-item glass-card">
+                        <span class="material-symbols-outlined icon-xl">landscape</span>
+                        <h4 class="title-sm">Cinturón de Asteroides</h4>
+                        <p class="body-xs text-secondary">Localizado entre Marte y Júpiter, contiene millones de cuerpos rocosos.</p>
+                    </div>
+                    <div class="bento-item span-2 glass-card flex-row items-center gap-8">
+                        <div class="icon-circle"><span class="material-symbols-outlined">orbit</span></div>
+                        <div>
+                            <h4 class="title-sm">Cometas y Meteoroides</h4>
+                            <p class="body-sm text-secondary">Visitantes helados que traen agua y compuestos orgánicos a los planetas interiores.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Missions Section -->
+        <section id="missions" class="section surface-high">
+            <div class="container flex-row justify-between items-end mb-12">
+                <h2 class="title-lg">Misiones 2025</h2>
+                <span class="label text-accent border-bottom">PRÓXIMOS LANZAMIENTOS</span>
+            </div>
+            <div class="container grid-4">
+                <div class="mission-card group">
+                    <div class="mission-visual glass-card">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuARXZuempxjYE_BMOiQRHi0aOjRe1Pnm2X5MXzApEbWrjeQhi5BH6kIiOcK-XKPZIYjjCq9ymmUdYIzESklEPS8Bu060XZwwuQAqVRCbhTy_jaS1osWv3qb98mAYo4ve26K2cAVgm_0FjnxmeHEgKYywZ4eBnqSgaz449he30Qd0z6BJ86Ztq489Qis_e2RaOLplN5Uml8eaAPf_xNq2SqBNf5WnVllLLAO9WAU69YFh59-YTKSi4KJhEmSTUyCRn0_j6AGZcP4lxL0" alt="PUNCH Mission">
+                    </div>
+                    <h3 class="title-sm mt-4">PUNCH</h3>
+                    <p class="body-xs text-secondary">Misión de la NASA para fotografiar el viento solar en tiempo real.</p>
+                </div>
+                <div class="mission-card group">
+                    <div class="mission-visual glass-card">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFS3os_fLsStGAFUHMSHzXMcTNt5OEnUTEwafwLSQTtejaR9X2qCvfzQk7QnDJiwByXetzu1VTz7faIREZDR9JTRBtluj8BFVlBuIms0Xqps2oK2vWx4tXPt3B568BOZ8hBx69KaMnI70lGyJAQVKn0uefIxZdHK6tJms7H6VjOamrm4OvWeqjTZLJvL6caMeHRKHe9djuozZUOi5oRr2A4JPvv2gBcch8ChottQ0vq0lJLz6R3IuUWnS2k8n4vzYAp9zOy3sRG7rp" alt="TRACERS Mission">
+                    </div>
+                    <h3 class="title-sm mt-4">TRACERS</h3>
+                    <p class="body-xs text-secondary">Estudio del campo magnético terrestre y su interacción solar.</p>
+                </div>
+                <div class="mission-card group">
+                    <div class="mission-visual glass-card">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2mBhylPZvP3CIJ1OTGZqRjs8G5rS-XxehDDYfThyRIqsBLrrBsFSJ5Mfmvp6DsMpSkXhvyjE7qy38F2f3X8-AsgFKbWQq3fXpWU-wYfMjm9pbRVzLC6PB3zx5QqMn8W9JHQiLa59WxR5fIfhMooQf24E1VEXzDQSw8Cl77-Pq_CjqcJcBiznKVzOOR4ZIEJU5yC3_4nAxZqXGpFjT5Gp2ZCrjKcferfuhiifhHsVntVa87reb6pYCjO5ojr6YB--QkGoP9Ym99E0k" alt="ESCAPADE Mission">
+                    </div>
+                    <h3 class="title-sm mt-4">ESCAPADE</h3>
+                    <p class="body-xs text-secondary">Sondas gemelas para estudiar la magnetósfera de Marte.</p>
+                </div>
+                <div class="mission-card group">
+                    <div class="mission-visual glass-card">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgUAO-nkn7eYTxIFj-M63VTQST_TqYY-jJ7hhWnEolgVJhH6c0cI5f8O8VPGUKBJDonvMmGDxN3_Mse2YnepMr56ofISW3K7fbt4440BkjBVSektFbq1r8eAJGtVL2jjMt7a7odboB-WKDO80HetO9fZIfPzoGVMs0ARasciOc4X_wow2KM1KqY4UIdrJ8OhvpKgIlcJSJpo4IPz7ePsJSobQw08fPjZuggK63zTSIuXEL3Brq2sJVrPehaAS5fqpZctO275Zr37aS" alt="Europa Clipper Mission">
+                    </div>
+                    <h3 class="title-sm mt-4">Europa Clipper</h3>
+                    <p class="body-xs text-secondary">Buscando condiciones para la vida en la luna Europa de Júpiter.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artemis II Section -->
+        <section id="artemis" class="section">
+            <div class="container">
+                <div class="flex-row justify-between items-end mb-16">
+                    <div>
+                        <span class="label">HITO CÓSMICO 2026</span>
+                        <h2 class="title-lg">El Éxito de Artemis II</h2>
+                    </div>
+                </div>
+                
+                <div class="glass-card ambient-glow p-8 mb-12">
+                    <div class="grid-2 gap-12">
+                        <div class="visual-card">
+                            <!-- Placeholder image for Artemis II -->
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj5UHUcsIhf2aOBcg6ymADspo0BHB-f1b86h4RD_msB3OruVKFtCdVv5fdqNKh-Lhv-Py5zXr59uOyFT_a9S96yQOA-aWMMERp4Gna1eF1aaQychOFg1A_bvLezbFmBqrj5_REniIzpoyKMGnWb9AKGQrNE4hQjMV23r9UBWCY90FyrlcWX2_3xoMcrVh0U4hA_EhIVJHafQGd57P-HBoK4QUeuzHhIiNTlJwWcslUJnvnPKv72_Hr1mF1dMPmpvAr-nasU8K35whX" alt="Splashdown Artemis II" class="img-responsive rounded-xl">
+                            <p class="body-xs text-secondary mt-4">La nave Orión tras un amerizaje seguro el 10 de abril de 2026.</p>
+                        </div>
+                        <div class="content-block">
+                            <h3 class="title-md mb-6">El Inicio de una Nueva Era</h3>
+                            <p class="body-lg text-secondary mb-6">La misión Artemis II ha concluido con éxito, marcando el primer viaje tripulado a las cercanías de la Luna en más de 50 años. Un hito que redefine las capacidades humanas en el espacio profundo.</p>
+                            
+                            <div class="grid-2 gap-6">
+                                <div class="glass-card p-6 surface-container">
+                                    <h4 class="title-sm mb-2">Amrerizaje Exitoso</h4>
+                                    <p class="body-xs text-secondary">Océano Pacífico, 10 de abril de 2026. Velocidad de reingreso: 40,000 km/h.</p>
+                                </div>
+                                <div class="glass-card p-6 surface-container">
+                                    <h4 class="title-sm mb-2">Comunicaciones O2O</h4>
+                                    <p class="body-xs text-secondary">Tecnología óptica con velocidades de hasta 260 Mbps desde el entorno lunar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2 gap-12">
+                    <div class="content-block">
+                        <h3 class="title-md mb-8">1. Una Tripulación Histórica</h3>
+                        <div class="curiosity-stack">
+                            <div class="glass-card p-6 flex-row gap-6 items-center">
+                                <span class="material-symbols-outlined text-primary-container">person</span>
+                                <div>
+                                    <div class="font-bold">Reid Wiseman (Comandante)</div>
+                                    <div class="text-xs text-secondary">Lideró la travesía de la nave Orión.</div>
+                                </div>
+                            </div>
+                            <div class="glass-card p-6 flex-row gap-6 items-center">
+                                <span class="material-symbols-outlined text-primary-container">person</span>
+                                <div>
+                                    <div class="font-bold">Victor Glover (Piloto)</div>
+                                    <div class="text-xs text-secondary">Primera persona de raza negra en viajar a la Luna.</div>
+                                </div>
+                            </div>
+                            <div class="glass-card p-6 flex-row gap-6 items-center">
+                                <span class="material-symbols-outlined text-primary-container">person</span>
+                                <div>
+                                    <div class="font-bold">Christina Koch (Especialista)</div>
+                                    <div class="text-xs text-secondary">Primera mujer en superar la órbita terrestre baja.</div>
+                                </div>
+                            </div>
+                            <div class="glass-card p-6 flex-row gap-6 items-center">
+                                <span class="material-symbols-outlined text-primary-container">person</span>
+                                <div>
+                                    <div class="font-bold">Jeremy Hansen (Especialista)</div>
+                                    <div class="text-xs text-secondary">Primer no estadounidense en alcanzar el entorno lunar.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h3 class="title-md mb-8">2. Lo que Sigue: Artemis III y IV</h3>
+                        <div class="curiosity-stack">
+                            <div class="glass-card p-6 border-accent">
+                                <div class="badge">2027</div>
+                                <h4 class="title-sm">Artemis III</h4>
+                                <p class="body-sm text-secondary">Prueba de acoplamiento en órbita baja con SpaceX y Blue Origin.</p>
+                            </div>
+                            <div class="glass-card p-6 border-accent">
+                                <div class="badge">2028</div>
+                                <h4 class="title-sm">Artemis IV</h4>
+                                <p class="body-sm text-secondary">¡El regreso a la superficie lunar! El primer alunizaje desde 1972.</p>
+                            </div>
+                            <div class="glass-card p-6 border-accent">
+                                <div class="badge">2032</div>
+                                <h4 class="title-sm">Base Lunar Permanente</h4>
+                                <p class="body-sm text-secondary">Establecimiento en el Polo Sur, usando hielo para oxígeno y combustible.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 glass-card p-12 text-center bg-gradient-to-tr from-surface-dim to-primary-container/5">
+                    <h3 class="title-md mb-6">Ciencia y Otras Fronteras</h3>
+                    <div class="grid-4 gap-4">
+                        <div class="p-4">
+                            <h5 class="font-bold text-accent">AVATAR</h5>
+                            <p class="text-xs text-secondary">Simuladores de órganos para estudio de radiación.</p>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-bold text-accent">CubeSats</h5>
+                            <p class="text-xs text-secondary">ATENEA (Argentina) y Alemania estudiando el espacio profundo.</p>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-bold text-accent">Nancy Grace Roman</h5>
+                            <p class="text-xs text-secondary">Búsqueda de energía oscura en Septiembre 2026.</p>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-bold text-accent">Dragonfly</h5>
+                            <p class="text-xs text-secondary">Misión a Titán prevista para 2028.</p>
+                        </div>
+                    </div>
+                <div class="curiosity-stack mt-12">
+                    <div class="glass-card p-12 text-center">
+                        <h3 class="title-md mb-4 italic">"Artemis II no es solo un regreso; es la prueba de que la humanidad está lista para quedarse en la Luna y, eventualmente, dar el salto hacia Marte en la década de 2030."</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curiosities -->
+        <section class="section">
+            <div class="container max-w-800">
+                <h2 class="title-md text-center mb-12">Sabías que...</h2>
+                <div class="curiosity-stack">
+                    <div class="curiosity-card glass-card border-accent">
+                        <span class="card-num">01</span>
+                        <p class="body-lg">En unos <span class="text-accent">5.000 millones de años</span>, el Sol se convertirá en una Gigante Roja y posiblemente engullirá a la Tierra.</p>
+                    </div>
+                    <div class="curiosity-card glass-card border-accent">
+                        <span class="card-num">02</span>
+                        <p class="body-lg">El Sistema Solar tarda unos <span class="text-accent">230 millones de años</span> en orbitar el centro de la Vía Láctea.</p>
+                    </div>
+                    <div class="curiosity-card glass-card border-accent">
+                        <span class="card-num">03</span>
+                        <p class="body-lg">Más del <span class="text-accent">99% de la masa</span> del sistema solar está contenida en el Sol.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section surface-low">
+            <div class="container max-w-600">
+                <h2 class="title-md text-center mb-12">Preguntas Frecuentes</h2>
+                <div class="accordion">
+                    <details class="glass-card">
+                        <summary>¿Cuál es el futuro de la Tierra? <span class="material-symbols-outlined">expand_more</span></summary>
+                        <div class="details-content">
+                            <p class="body-sm text-secondary">A largo plazo, la luminosidad creciente del Sol hará que los océanos se evaporen en unos 1.000 millones de años.</p>
+                        </div>
+                    </details>
+                    <details class="glass-card">
+                        <summary>¿Qué son las manchas solares? <span class="material-symbols-outlined">expand_more</span></summary>
+                        <div class="details-content">
+                            <p class="body-sm text-secondary">Son regiones temporales en la fotósfera del Sol que aparecen más oscuras por su baja temperatura.</p>
+                        </div>
+                    </details>
+                    <details class="glass-card">
+                        <summary>¿Afectan las llamaradas a la Tierra? <span class="material-symbols-outlined">expand_more</span></summary>
+                        <div class="details-content">
+                            <p class="body-sm text-secondary">Sí, pueden causar tormentas geomagnéticas que afectan satélites y redes eléctricas.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">Cosmic Curator</div>
+            <p class="text-secondary">© 2024 The Cosmic Curator. Ad Astra Per Aspera.</p>
+            <div class="footer-links">
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="fab btn-primary"><span class="material-symbols-outlined">rocket_launch</span></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

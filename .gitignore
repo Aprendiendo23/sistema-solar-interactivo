@@ -1,0 +1,14 @@
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment (don't commit secrets)
+.env
+.env.*

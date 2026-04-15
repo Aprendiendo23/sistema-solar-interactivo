@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cosmic Curator | El Sistema Solar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary": "#2d2f42",
+                "primary-fixed-dim": "#e9c400",
+                "surface-container": "#1d1f2a",
+                "tertiary-fixed": "#d4e6e5",
+                "surface-dim": "#11131d",
+                "secondary": "#c4c5dd",
+                "on-surface-variant": "#d0c6ab",
+                "primary-container": "#ffd700",
+                "on-tertiary-container": "#516261",
+                "tertiary": "#e8faf9",
+                "outline-variant": "#4d4732",
+                "on-error-container": "#ffdad6",
+                "secondary-container": "#46485c",
+                "surface-container-highest": "#32343f",
+                "secondary-fixed-dim": "#c4c5dd",
+                "on-secondary-fixed": "#181a2c",
+                "inverse-surface": "#e1e1f0",
+                "primary": "#fff6df",
+                "surface": "#11131d",
+                "error-container": "#93000a",
+                "on-secondary-container": "#b6b6cf",
+                "background": "#11131d",
+                "inverse-on-surface": "#2e303b",
+                "outline": "#999077",
+                "surface-bright": "#373844",
+                "tertiary-container": "#cbdddc",
+                "on-primary-fixed-variant": "#544600",
+                "on-surface": "#e1e1f0",
+                "inverse-primary": "#705d00",
+                "on-tertiary": "#233333",
+                "surface-variant": "#32343f",
+                "on-primary-container": "#705e00",
+                "surface-container-high": "#282934",
+                "primary-fixed": "#ffe16d",
+                "on-primary-fixed": "#221b00",
+                "secondary-fixed": "#e0e0fa",
+                "surface-container-lowest": "#0c0e18",
+                "on-background": "#e1e1f0",
+                "error": "#ffb4ab",
+                "on-secondary-fixed-variant": "#444559",
+                "on-error": "#690005",
+                "on-tertiary-fixed-variant": "#3a4a49",
+                "on-primary": "#3a3000",
+                "on-tertiary-fixed": "#0e1e1e",
+                "surface-tint": "#e9c400",
+                "tertiary-fixed-dim": "#b8cac9",
+                "surface-container-low": "#191b26"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Space Grotesk"],
+                "body": ["Plus Jakarta Sans"],
+                "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .glass-card {
+            background: rgba(50, 52, 63, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(77, 71, 50, 0.15);
+        }
+        .star-path {
+            height: 2px;
+            background: #4d4732;
+            position: relative;
+        }
+        .star-path-fill {
+            height: 100%;
+            background: #ffd700;
+        }
+        .star-path-head {
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px #ffd700;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/40 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+<div class="flex justify-between items-center px-8 h-20 max-w-screen-2xl mx-auto font-['Space_Grotesk'] tracking-tight">
+<div class="text-2xl font-bold tracking-tighter text-yellow-500">Cosmic Curator</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-yellow-400 border-b-2 border-yellow-500 pb-1" href="#">Inicio</a>
+<a class="text-slate-300 hover:text-yellow-200 transition-colors" href="#origin">Origen</a>
+<a class="text-slate-300 hover:text-yellow-200 transition-colors" href="#sun">El Sol</a>
+<a class="text-slate-300 hover:text-yellow-200 transition-colors" href="#planets">Planetas</a>
+<a class="text-slate-300 hover:text-yellow-200 transition-colors" href="#missions">Misiones</a>
+<a class="text-slate-300 hover:text-yellow-200 transition-colors" href="#faq">FAQ</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-xl font-bold hover:scale-95 duration-200 transition-all shadow-[0_0_15px_rgba(255,215,0,0.3)]">
+                Explorar
+            </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,215,0,0.05)_0%,_transparent_70%)]"></div>
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-fixed-dim/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary-container/20 blur-[100px] rounded-full"></div>
+<div class="w-full h-full opacity-40 mix-blend-screen" data-alt="cinematic view of deep space with a bright nebula, distant stars, and a subtle glowing cosmic dust texture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAj5UHUcsIhf2aOBcg6ymADspo0BHB-f1b86h4RD_msB3OruVKFtCdVv5fdqNKh-Lhv-Py5zXr59uOyFT_a9S96yQOA-aWMMERp4Gna1eF1aaQychOFg1A_bvLezbFmBqrj5_REniIzpoyKMGnWb9AKGQrNE4hQjMV23r9UBWCY90FyrlcWX2_3xoMcrVh0U4hA_EhIVJHafQGd57P-HBoK4QUeuzHhIiNTlJwWcslUJnvnPKv72_Hr1mF1dMPmpvAr-nasU8K35whX'); background-size: cover; background-position: center;">
+</div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<div class="inline-block px-4 py-1.5 rounded-full border border-outline-variant/30 bg-surface-container-low text-primary-fixed-dim font-label text-xs tracking-widest uppercase">
+                    Sistema Estelar Local
+                </div>
+<h1 class="text-7xl md:text-8xl font-bold leading-none tracking-tighter text-primary">
+                    El Sistema <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary-fixed-dim">Solar</span>
+</h1>
+<p class="text-xl text-secondary max-w-xl leading-relaxed">
+                    Explorando nuestro vecindario cósmico. Un conjunto armonioso de 8 planetas unidos por la gravedad, trazando órbitas elípticas alrededor de nuestra estrella anfitriona en un rincón remoto de la Vía Láctea.
+                </p>
+<div class="flex gap-6">
+<button class="bg-gradient-to-r from-primary-container to-primary-fixed-dim text-on-primary-container px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
+                        Iniciar Viaje <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="glass-card px-8 py-4 rounded-xl font-bold text-primary flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+                        Saber más
+                    </button>
+</div>
+</div>
+<div class="relative hidden lg:block">
+<div class="w-full aspect-square glass-card rounded-full flex items-center justify-center p-12 border-primary-container/10">
+<div class="w-full h-full rounded-full bg-gradient-to-tr from-surface-container-lowest to-surface-container-highest flex items-center justify-center relative overflow-hidden group">
+<img class="w-full h-full object-cover mix-blend-lighten opacity-80 group-hover:scale-110 transition-transform duration-1000" data-alt="high resolution photography of the planet earth from space showing continents and clouds with a glowing blue atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqMSvqnN4IiaYFhQyEBLTflC9qWKAX3qvUmodhcZ8Zo4KpMKoqa3pTfyJorcrd1rsNwOQWMX3vZShC1IXypNUKxaI_hmamMKVcwrf1wsKDkmLQSzRNp4grPYY6eueaZRGVty9Q3QxxJSX-aYRnpGGy30sY0qXux3Y8Lj7-DE4n8T9uazLBwOTRMxWr1fRMdF2CVDrQ5ahF5LqTiM7hUco7HJbIXUPZye6IGJiqytHR_toJW-ki2vA_euqBklHmN5dtTuKTyI4dRHA-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
+</div>
+<!-- Orbits decoration -->
+<div class="absolute inset-0 rounded-full border border-primary-container/5 animate-[spin_20s_linear_infinite]"></div>
+<div class="absolute inset-4 rounded-full border border-primary-container/5 animate-[spin_15s_linear_infinite_reverse]"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Origin: The Nebular Hypothesis -->
+<section class="py-32 bg-surface-container-low relative overflow-hidden" id="origin">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<div class="relative rounded-3xl overflow-hidden glass-card p-1">
+<img class="rounded-3xl w-full aspect-video object-cover" data-alt="stunning colorful nebula in deep space with vibrant oranges, purples and blues representing the birth of a solar system" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAm6c_JpqHI1vOv6U-DklnLaAAxmRYfQNd00XYEf31oJ2ktSpOwHanLzmGVdborWsvklXfp7PyPua78a7YwfLAhiIkdmLoNWGV0rt0zXXU0jZQkcsgMw5XT9BKQWFzPXWozuQU-jy9SOVVwNxiRyHnB-zy1Mj-MwLWwKokDYPuPHUwm5hjdlKqWZNkr6XeDBOfkd1mK-iIDoONR4pZbjl8WvCeOgjcciPlT2iZ7ku2e0uid2t4PS6TVf8rQ0rtr-ajUxYWEIB7P9kB"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent flex items-end p-8">
+<div>
+<p class="font-label text-primary-fixed-dim text-sm tracking-widest uppercase mb-2">Visualización</p>
+<h3 class="text-2xl font-bold">Colapso Gravitacional</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<h2 class="text-5xl font-bold text-primary tracking-tight">La Hipótesis Nebular</h2>
+<div class="star-path w-24">
+<div class="star-path-fill w-3/4"></div>
+<div class="star-path-head"></div>
+</div>
+<p class="text-lg text-secondary leading-relaxed">
+                    Hace aproximadamente <span class="text-primary-container font-bold">4.600 millones de años</span>, una inmensa nube de gas y polvo interestelar comenzó a colapsar bajo su propia gravedad. Este evento cataclísmico dio origen a un disco protoplanetario en rotación, donde la mayor parte de la masa se concentró en el centro para formar el Sol.
+                </p>
+<div class="grid grid-cols-2 gap-6">
+<div class="p-6 rounded-2xl glass-card">
+<div class="text-3xl font-bold text-primary-container mb-2">99.8%</div>
+<p class="text-sm text-secondary">De la masa total del sistema se encuentra en el Sol.</p>
+</div>
+<div class="p-6 rounded-2xl glass-card">
+<div class="text-3xl font-bold text-primary-container mb-2">4.6B</div>
+<p class="text-sm text-secondary">Años de evolución desde el colapso inicial.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Sun Section -->
+<section class="py-32 relative" id="sun">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20 space-y-4">
+<h2 class="text-5xl font-bold text-primary tracking-tight">El Corazón del Sistema: El Sol</h2>
+<p class="text-secondary max-w-2xl mx-auto">Una estrella de tipo espectral G2V que sostiene la vida y el orden orbital de nuestro mundo.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Features -->
+<div class="glass-card p-8 rounded-3xl hover:bg-surface-container-highest transition-all group">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-container">wb_sunny</span>
+</div>
+<h4 class="text-xl font-bold mb-4">Características</h4>
+<ul class="space-y-3 text-secondary text-sm">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Enana Amarilla</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> 73% Hidrógeno</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> 25% Helio</li>
+</ul>
+</div>
+<!-- Card 2: Structure -->
+<div class="glass-card p-8 rounded-3xl hover:bg-surface-container-highest transition-all group">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-container">layers</span>
+</div>
+<h4 class="text-xl font-bold mb-4">Estructura</h4>
+<ul class="space-y-3 text-secondary text-sm">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Núcleo (Fusión)</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Zona Radiativa</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Zona Convectiva</li>
+</ul>
+</div>
+<!-- Card 3: Atmosphere -->
+<div class="glass-card p-8 rounded-3xl hover:bg-surface-container-highest transition-all group">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-container">filter_drama</span>
+</div>
+<h4 class="text-xl font-bold mb-4">Atmósfera</h4>
+<ul class="space-y-3 text-secondary text-sm">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Fotósfera</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Cromósfera</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Corona Solar</li>
+</ul>
+</div>
+<!-- Card 4: Phenomena -->
+<div class="glass-card p-8 rounded-3xl hover:bg-surface-container-highest transition-all group">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-container">flare</span>
+</div>
+<h4 class="text-xl font-bold mb-4">Fenómenos</h4>
+<ul class="space-y-3 text-secondary text-sm">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Manchas Solares</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Llamaradas</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Viento Solar</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Planets Table -->
+<section class="py-32 bg-surface-container-lowest" id="planets">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="space-y-4">
+<h2 class="text-5xl font-bold text-primary tracking-tight">Mundos en Órbita</h2>
+<p class="text-secondary max-w-xl">Comparativa técnica de los ocho planetas que conforman nuestro sistema, desde los mundos rocosos interiores hasta los gigantes gaseosos exteriores.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-3 rounded-full border border-outline-variant/30 text-primary-container hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="p-3 rounded-full border border-outline-variant/30 text-primary-container hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/20">
+<th class="pb-6 px-4 font-headline text-primary-container uppercase tracking-widest text-xs">Planeta</th>
+<th class="pb-6 px-4 font-headline text-primary-container uppercase tracking-widest text-xs">Distancia (UA)</th>
+<th class="pb-6 px-4 font-headline text-primary-container uppercase tracking-widest text-xs">Diámetro (km)</th>
+<th class="pb-6 px-4 font-headline text-primary-container uppercase tracking-widest text-xs">Rotación</th>
+<th class="pb-6 px-4 font-headline text-primary-container uppercase tracking-widest text-xs">Traslación</th>
+<th class="pb-6 px-4 font-headline text-primary-container uppercase tracking-widest text-xs">Lunas</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-6 px-4 font-bold text-primary">Mercurio</td>
+<td class="py-6 px-4 text-secondary">0.39</td>
+<td class="py-6 px-4 text-secondary">4,879</td>
+<td class="py-6 px-4 text-secondary">59 días</td>
+<td class="py-6 px-4 text-secondary">88 días</td>
+<td class="py-6 px-4 text-secondary">0</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4 font-bold text-primary">Venus</td>
+<td class="py-6 px-4 text-secondary">0.72</td>
+<td class="py-6 px-4 text-secondary">12,104</td>
+<td class="py-6 px-4 text-secondary">243 días</td>
+<td class="py-6 px-4 text-secondary">225 días</td>
+<td class="py-6 px-4 text-secondary">0</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4 font-bold text-primary">Tierra</td>
+<td class="py-6 px-4 text-secondary">1.00</td>
+<td class="py-6 px-4 text-secondary">12,742</td>
+<td class="py-6 px-4 text-secondary">24 horas</td>
+<td class="py-6 px-4 text-secondary">365.25 días</td>
+<td class="py-6 px-4 text-secondary">1</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4 font-bold text-primary">Marte</td>
+<td class="py-6 px-4 text-secondary">1.52</td>
+<td class="py-6 px-4 text-secondary">6,779</td>
+<td class="py-6 px-4 text-secondary">24.6 horas</td>
+<td class="py-6 px-4 text-secondary">687 días</td>
+<td class="py-6 px-4 text-secondary">2</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4 font-bold text-primary">Júpiter</td>
+<td class="py-6 px-4 text-secondary">5.20</td>
+<td class="py-6 px-4 text-secondary">139,820</td>
+<td class="py-6 px-4 text-secondary">9.9 horas</td>
+<td class="py-6 px-4 text-secondary">11.9 años</td>
+<td class="py-6 px-4 text-secondary">95</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4 font-bold text-primary">Saturno</td>
+<td class="py-6 px-4 text-secondary">9.54</td>
+<td class="py-6 px-4 text-secondary">116,460</td>
+<td class="py-6 px-4 text-secondary">10.7 horas</td>
+<td class="py-6 px-4 text-secondary">29.5 años</td>
+<td class="py-6 px-4 text-secondary">146</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4 font-bold text-primary">Urano</td>
+<td class="py-6 px-4 text-secondary">19.22</td>
+<td class="py-6 px-4 text-secondary">50,724</td>
+<td class="py-6 px-4 text-secondary">17.2 horas</td>
+<td class="py-6 px-4 text-secondary">84 años</td>
+<td class="py-6 px-4 text-secondary">27</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-6 px-4 font-bold text-primary">Neptuno</td>
+<td class="py-6 px-4 text-secondary">30.06</td>
+<td class="py-6 px-4 text-secondary">49,244</td>
+<td class="py-6 px-4 text-secondary">16.1 horas</td>
+<td class="py-6 px-4 text-secondary">164.8 años</td>
+<td class="py-6 px-4 text-secondary">14</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Minor Bodies & Regions (Bento Grid) -->
+<section class="py-32 px-8 max-w-7xl mx-auto">
+<h2 class="text-4xl font-bold mb-16 text-center">Cuerpos Menores y Regiones</h2>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="md:col-span-2 glass-card rounded-3xl p-8 flex flex-col justify-between min-h-[300px] relative overflow-hidden group">
+<div class="relative z-10">
+<span class="font-label text-primary-container text-xs tracking-widest mb-4 block">ZONAS FRONTERIZAS</span>
+<h3 class="text-3xl font-bold mb-4">Cinturón de Kuiper &amp; Nube de Oort</h3>
+<p class="text-secondary max-w-md leading-relaxed">
+                        Los límites exteriores del sistema solar, hogar de cometas y planetas enanos que guardan los secretos de la formación planetaria.
+                    </p>
+</div>
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-20 group-hover:opacity-40 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="abstract cosmic background with faint points of light and icy textures representing the frozen edge of the solar system" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4sVRtI3DLPtKQZTxKKnBw5q4Fqk-9CDY3D1_nKCemQa7RDRNS--uLKCfFrY_oQt7AYeds_maB-5N98NY29qvwFxa43FyLqx13gMWtwLPT6EUJPTKSvM4DZbK_8fIMkURaVcb-zh3p8DKAm5Det467TLLc_sEJekXbO7Lo8s-VmnGVqGkwzjhh3SSh_KmTVQZlWhbOyZz9KUNclqkz9IcyCNhGcBf3FPGOFSRN8V4a9fRP3xCcKeIS9PcYEJhsWJJMoCxr8dV3kGyK"/>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-8 bg-gradient-to-br from-surface-container-low to-primary-container/5">
+<h4 class="text-xl font-bold mb-4">Planetas Enanos</h4>
+<ul class="space-y-4">
+<li class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-primary">Plutón</span>
+<span class="text-xs text-secondary italic">Ex-Noveno</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-primary">Ceres</span>
+<span class="text-xs text-secondary italic">Cinturón de Asteroides</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span class="text-primary">Eris</span>
+<span class="text-xs text-secondary italic">Objeto Transneptuniano</span>
+</li>
+<li class="flex justify-between">
+<span class="text-primary">Haumea</span>
+<span class="text-xs text-secondary italic">Disco Disperso</span>
+</li>
+</ul>
+</div>
+<div class="glass-card rounded-3xl p-8">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-4">landscape</span>
+<h4 class="text-xl font-bold mb-2">Cinturón de Asteroides</h4>
+<p class="text-sm text-secondary">Localizado entre Marte y Júpiter, contiene millones de cuerpos rocosos de diversos tamaños.</p>
+</div>
+<div class="md:col-span-2 glass-card rounded-3xl p-8 flex items-center gap-8">
+<div class="hidden sm:block w-32 h-32 flex-shrink-0 bg-primary-fixed-dim/20 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-5xl">orbit</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Cometas y Meteoroides</h4>
+<p class="text-secondary">Visitantes helados de las profundidades del espacio que traen agua y compuestos orgánicos a los planetas interiores.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 2025 Missions -->
+<section class="py-32 bg-surface-container-high relative" id="missions">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<h2 class="text-5xl font-bold text-primary tracking-tight">Misiones 2025</h2>
+<div class="text-primary-container font-label tracking-widest text-sm border-b border-primary-container/30 pb-2">PRÓXIMOS LANZAMIENTOS</div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- PUNCH -->
+<div class="flex flex-col gap-6 group">
+<div class="aspect-square rounded-3xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="a spacecraft or satellite component in a sterile lab with gold foil and high-tech instrumentation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARXZuempxjYE_BMOiQRHi0aOjRe1Pnm2X5MXzApEbWrjeQhi5BH6kIiOcK-XKPZIYjjCq9ymmUdYIzESklEPS8Bu060XZwwuQAqVRCbhTy_jaS1osWv3qb98mAYo4ve26K2cAVgm_0FjnxmeHEgKYywZ4eBnqSgaz449he30Qd0z6BJ86Ztq489Qis_e2RaOLplN5Uml8eaAPf_xNq2SqBNf5WnVllLLAO9WAU69YFh59-YTKSi4KJhEmSTUyCRn0_j6AGZcP4lxL0"/>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-primary mb-2">PUNCH</h3>
+<p class="text-secondary text-sm leading-relaxed">Misión de la NASA para fotografiar el viento solar y las eyecciones de masa coronal en tiempo real.</p>
+</div>
+</div>
+<!-- TRACERS -->
+<div class="flex flex-col gap-6 group">
+<div class="aspect-square rounded-3xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="dramatic rocket launch at night with intense orange flames and smoke against a dark sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFS3os_fLsStGAFUHMSHzXMcTNt5OEnUTEwafwLSQTtejaR9X2qCvfzQk7QnDJiwByXetzu1VTz7faIREZDR9JTRBtluj8BFVlBuIms0Xqps2oK2vWx4tXPt3B568BOZ8hBx69KaMnI70lGyJAQVKn0uefIxZdHK6tJms7H6VjOamrm4OvWeqjTZLJvL6caMeHRKHe9djuozZUOi5oRr2A4JPvv2gBcch8ChottQ0vq0lJLz6R3IuUWnS2k8n4vzYAp9zOy3sRG7rp"/>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-primary mb-2">TRACERS</h3>
+<p class="text-secondary text-sm leading-relaxed">Estudio de cómo el campo magnético de la Tierra interactúa con el viento solar en las cúspides polares.</p>
+</div>
+</div>
+<!-- ESCAPADE -->
+<div class="flex flex-col gap-6 group">
+<div class="aspect-square rounded-3xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="surface of mars with red dust and rocky terrain viewed from a low angle simulation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2mBhylPZvP3CIJ1OTGZqRjs8G5rS-XxehDDYfThyRIqsBLrrBsFSJ5Mfmvp6DsMpSkXhvyjE7qy38F2f3X8-AsgFKbWQq3fXpWU-wYfMjm9pbRVzLC6PB3zx5QqMn8W9JHQiLa59WxR5fIfhMooQf24E1VEXzDQSw8Cl77-Pq_CjqcJcBiznKVzOOR4ZIEJU5yC3_4nAxZqXGpFjT5Gp2ZCrjKcferfuhiifhHsVntVa87reb6pYCjO5ojr6YB--QkGoP9Ym99E0k"/>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-primary mb-2">ESCAPADE</h3>
+<p class="text-secondary text-sm leading-relaxed">Dos sondas gemelas que estudiarán la magnetósfera de Marte y su interacción con el Sol.</p>
+</div>
+</div>
+<!-- Europa Clipper -->
+<div class="flex flex-col gap-6 group">
+<div class="aspect-square rounded-3xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="icy surface of an alien moon with deep cracks and blue glow representing Jupiter's moon Europa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgUAO-nkn7eYTxIFj-M63VTQST_TqYY-jJ7hhWnEolgVJhH6c0cI5f8O8VPGUKBJDonvMmGDxN3_Mse2YnepMr56ofISW3K7fbt4440BkjBVSektFbq1r8eAJGtVL2jjMt7a7odboB-WKDO80HetO9fZIfPzoGVMs0ARasciOc4X_wow2KM1KqY4UIdrJ8OhvpKgIlcJSJpo4IPz7ePsJSobQw08fPjZuggK63zTSIuXEL3Brq2sJVrPehaAS5fqpZctO275Zr37aS"/>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-primary mb-2">Europa Clipper</h3>
+<p class="text-secondary text-sm leading-relaxed">La misión insignia para determinar si la luna Europa de Júpiter tiene condiciones para la vida.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Curiosities Section -->
+<section class="py-32 relative overflow-hidden">
+<div class="absolute -right-24 top-1/2 -translate-y-1/2 w-96 h-96 bg-primary-container/5 blur-[120px] rounded-full"></div>
+<div class="max-w-4xl mx-auto px-8">
+<h2 class="text-4xl font-bold mb-12 text-center text-primary">Sabías que...</h2>
+<div class="space-y-6">
+<div class="glass-card p-8 rounded-3xl border-l-4 border-l-primary-container">
+<div class="flex gap-6 items-start">
+<span class="text-4xl opacity-20 font-bold font-headline">01</span>
+<p class="text-lg text-secondary leading-relaxed">En unos <span class="text-primary">5.000 millones de años</span>, el Sol agotará su hidrógeno y se convertirá en una Gigante Roja, expandiéndose hasta posiblemente engullir a la Tierra.</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-3xl border-l-4 border-l-primary-container">
+<div class="flex gap-6 items-start">
+<span class="text-4xl opacity-20 font-bold font-headline">02</span>
+<p class="text-lg text-secondary leading-relaxed">El Sistema Solar tarda unos <span class="text-primary">230 millones de años</span> en completar una órbita alrededor del centro de la Vía Láctea.</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-3xl border-l-4 border-l-primary-container">
+<div class="flex gap-6 items-start">
+<span class="text-4xl opacity-20 font-bold font-headline">03</span>
+<p class="text-lg text-secondary leading-relaxed">Más del <span class="text-primary">99% de la masa</span> de todo el sistema solar está contenida exclusivamente en el Sol; el resto es principalmente Júpiter.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Accordion -->
+<section class="py-32 bg-surface-container-low" id="faq">
+<div class="max-w-3xl mx-auto px-8">
+<h2 class="text-4xl font-bold mb-12 text-center">Preguntas Frecuentes</h2>
+<div class="space-y-4">
+<details class="group glass-card rounded-2xl overflow-hidden [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="font-bold text-primary">¿Cuál es el futuro de la Tierra?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-secondary text-sm leading-relaxed">
+                        A largo plazo, la luminosidad creciente del Sol hará que los océanos se evaporen en unos 1.000 millones de años. Finalmente, cuando el Sol sea una gigante roja, la órbita de la Tierra podría ser consumida o quedar como un mundo estéril.
+                    </div>
+</details>
+<details class="group glass-card rounded-2xl overflow-hidden [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="font-bold text-primary">¿Qué son las manchas solares?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-secondary text-sm leading-relaxed">
+                        Son regiones temporales en la fotósfera del Sol que aparecen más oscuras porque tienen una temperatura más baja que su entorno. Están causadas por una intensa actividad magnética que inhibe la convección.
+                    </div>
+</details>
+<details class="group glass-card rounded-2xl overflow-hidden [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="font-bold text-primary">¿Afectan las llamaradas solares a la Tierra?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-secondary text-sm leading-relaxed">
+                        Sí, pueden causar tormentas geomagnéticas que afectan las comunicaciones por satélite, las redes eléctricas y crean hermosas auroras en los polos.
+                    </div>
+</details>
+<details class="group glass-card rounded-2xl overflow-hidden [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="font-bold text-primary">¿Por qué 2025 es un año clave para las misiones?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-secondary text-sm leading-relaxed">
+                        2025 marca una ventana de lanzamiento crítica para varias misiones heliofísicas y planetarias (como Europa Clipper y PUNCH) debido a alineaciones planetarias favorables y el pico del ciclo solar actual.
+                    </div>
+</details>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-12 border-t border-white/5 font-['Plus_Jakarta_Sans'] text-sm tracking-wide">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-screen-2xl mx-auto">
+<div class="text-lg font-bold text-yellow-500">Cosmic Curator</div>
+<div class="text-slate-500">© 2024 The Cosmic Curator. Ad Astra Per Aspera.</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-yellow-400 underline-offset-4 hover:underline transition-opacity duration-300" href="#">Privacidad</a>
+<a class="text-slate-500 hover:text-yellow-400 underline-offset-4 hover:underline transition-opacity duration-300" href="#">Términos</a>
+<a class="text-slate-500 hover:text-yellow-400 underline-offset-4 hover:underline transition-opacity duration-300" href="#">Créditos API</a>
+<a class="text-slate-500 hover:text-yellow-400 underline-offset-4 hover:underline transition-opacity duration-300" href="#">Contacto</a>
+</div>
+</div>
+</footer>
+<!-- FAB (Suppressed on details, shown here for main flow) -->
+<button class="fixed bottom-8 right-8 bg-primary-container text-on-primary-container p-4 rounded-full shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:scale-110 transition-transform z-50 flex items-center justify-center">
+<span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</body></html>
