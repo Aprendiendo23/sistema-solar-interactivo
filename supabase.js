@@ -310,4 +310,4 @@ function showToast(message) {
     }, 3000);
 }
 
-loadPlanets();
+document.addEventListener('DOMContentLoaded', loadPlanets);
