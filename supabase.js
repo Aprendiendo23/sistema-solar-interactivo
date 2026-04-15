@@ -287,7 +287,7 @@ function downloadPlanetsData() {
 
 function sharePage() {
     const shareData = {
-        title: 'Cosmic Curator - Sistema Solar',
+        title: 'Sistema Solar - El Sistema Solar',
         text: 'Explora el sistema solar de forma interactiva',
         url: window.location.href
     };
