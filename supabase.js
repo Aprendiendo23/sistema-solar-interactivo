@@ -171,83 +171,34 @@ function showPlanetModal(planetName) {
     const planet = planetsData.find(p => p.nombre === planetName);
     const details = planetDetails[planetName];
     
-    if (!planet || !details) return;
+    if (!planet || !details) {
+        console.log('No se encontró el planeta:', planetName);
+        return;
+    }
     
     const modal = document.getElementById('planet-modal');
     const modalContent = document.getElementById('modal-planet-content');
     
-    modalContent.innerHTML = `
-        <div class="modal-planet-header" style="border-color: ${details.color}">
-            <div class="modal-planet-orb" style="background: radial-gradient(circle at 30% 30%, ${details.color}, ${details.color}88, ${details.color}44);
-                        box-shadow: 0 0 60px ${details.orbit_glow}, inset -20px -20px 40px rgba(0,0,0,0.4);">
-            </div>
-            <div class="modal-planet-info">
-                <span class="label">Datos del Planeta</span>
-                <h2 class="title-lg" style="color: ${details.color}">${planet.nombre}</h2>
-                <p class="body-md text-secondary">${details.description}</p>
-            </div>
-        </div>
-        <div class="modal-stats-grid">
-            <div class="modal-stat glass-card">
-                <span class="material-symbols-outlined">straighten</span>
-                <div class="modal-stat-content">
-                    <span class="modal-stat-value">${planet.diametro_km.toLocaleString()} km</span>
-                    <span class="modal-stat-label">Diámetro</span>
-                </div>
-            </div>
-            <div class="modal-stat glass-card">
-                <span class="material-symbols-outlined">route</span>
-                <div class="modal-stat-content">
-                    <span class="modal-stat-value">${planet.distancia_ua} UA</span>
-                    <span class="modal-stat-label">Distancia al Sol</span>
-                </div>
-            </div>
-            <div class="modal-stat glass-card">
-                <span class="material-symbols-outlined">thermostat</span>
-                <div class="modal-stat-content">
-                    <span class="modal-stat-value">${details.temperatura}</span>
-                    <span class="modal-stat-label">Temperatura</span>
-                </div>
-            </div>
-            <div class="modal-stat glass-card">
-                <span class="material-symbols-outlined">speed</span>
-                <div class="modal-stat-content">
-                    <span class="modal-stat-value">${details.gravedad}</span>
-                    <span class="modal-stat-label">Gravedad</span>
-                </div>
-            </div>
-            <div class="modal-stat glass-card">
-                <span class="material-symbols-outlined">schedule</span>
-                <div class="modal-stat-content">
-                    <span class="modal-stat-value">${planet.rotacion}</span>
-                    <span class="modal-stat-label">Rotación</span>
-                </div>
-            </div>
-            <div class="modal-stat glass-card">
-                <span class="material-symbols-outlined">calendar_month</span>
-                <div class="modal-stat-content">
-                    <span class="modal-stat-value">${planet.traslacion}</span>
-                    <span class="modal-stat-label">Traslación</span>
-                </div>
-            </div>
-            <div class="modal-stat glass-card span-2">
-                <span class="material-symbols-outlined">satellite_alt</span>
-                <div class="modal-stat-content">
-                    <span class="modal-stat-value">${details.satelites}</span>
-                    <span class="modal-stat-label">Satélites Naturales</span>
-                </div>
-            </div>
-        </div>
-    `;
+    modalContent.innerHTML = '<button onclick="closePlanetModal()" style="float:right;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;">×</button>' +
+        '<div style="margin-top:2rem;">' +
+        '<h2 style="color:' + details.color + ';margin-bottom:1rem;">' + planet.nombre + '</h2>' +
+        '<p style="color:#888;margin-bottom:1.5rem;">' + details.description + '</p>' +
+        '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">' +
+        '<div><strong>Diámetro:</strong> ' + planet.diametro_km.toLocaleString() + ' km</div>' +
+        '<div><strong>Distancia:</strong> ' + planet.distancia_ua + ' UA</div>' +
+        '<div><strong>Temperatura:</strong> ' + details.temperatura + '</div>' +
+        '<div><strong>Gravedad:</strong> ' + details.gravedad + '</div>' +
+        '<div><strong>Rotación:</strong> ' + planet.rotacion + '</div>' +
+        '<div><strong>Traslación:</strong> ' + planet.traslacion + '</div>' +
+        '<div><strong>Satélites:</strong> ' + details.satelites + '</div>' +
+        '</div></div>';
     
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    modal.style.display = 'flex';
 }
 
 function closePlanetModal() {
     const modal = document.getElementById('planet-modal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
+    modal.style.display = 'none';
 }
 
 function downloadPlanetsData() {
@@ -312,21 +263,4 @@ function showToast(message) {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPlanets();
-    
-    const closeBtn = document.getElementById('close-modal');
-    const backdrop = document.querySelector('.modal-backdrop');
-    
-    if (closeBtn) {
-        closeBtn.onclick = closePlanetModal;
-    }
-    
-    if (backdrop) {
-        backdrop.onclick = closePlanetModal;
-    }
-    
-    document.onkeydown = (e) => {
-        if (e.key === 'Escape') {
-            closePlanetModal();
-        }
-    };
 });
