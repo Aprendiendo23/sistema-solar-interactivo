@@ -1285,23 +1285,18 @@ body {
 /* Responsive Table Improvements */
 @media (max-width: 768px) {
     .data-table {
-        font-size: 0.8rem;
-        min-width: 600px;
+        font-size: 0.75rem;
+        min-width: 500px;
     }
     
     .data-table th,
     .data-table td {
-        padding: 1rem 0.5rem;
+        padding: 0.75rem 0.5rem;
+        white-space: nowrap;
     }
     
-    .modal-content {
-        padding: 1.5rem;
-        width: 95%;
-    }
-    
-    .modal-planet-header {
-        flex-direction: column;
-        text-align: center;
+    .data-table th {
+        font-size: 0.65rem;
     }
 }
 
@@ -1313,70 +1308,15 @@ body {
     padding: 0 1rem;
 }
 
-@media (max-width: 640px) {
-    .table-cards-view {
-        display: flex !important;
-        flex-direction: column;
-        gap: 1rem;
-        min-width: 100%;
-    }
-    
-    .table-cards-view .data-table,
-    .table-cards-view thead,
-    .table-cards-view tbody,
-    .table-cards-view th,
-    .table-cards-view td,
-    .table-cards-view tr {
-        display: none !important;
-    }
-    
-    .planet-card-mobile {
-        display: flex !important;
-        background: var(--surface-container);
-        border: 1px solid var(--outline-variant);
-        border-radius: 0.75rem;
-        padding: 1rem 1.25rem;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .planet-card-mobile:active {
-        background: var(--surface-container-high);
-    }
-    
-    .planet-card-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-    
-    .planet-card-dot {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        box-shadow: 0 0 8px currentColor;
-    }
-    
-    .planet-card-name {
-        font-family: var(--font-headline);
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--primary);
-    }
-    
-    .planet-card-hint {
-        font-size: 0.75rem;
-        color: var(--primary-container);
-        opacity: 0.8;
-    }
+.table-cards-view {
+    display: none !important;
 }
 
-.table-cards-view,
-.planet-card-mobile {
-    display: none;
+@media (max-width: 480px) {
+    .table-responsive-wrapper {
+        margin: 0 -0.5rem;
+        padding: 0 0.5rem;
+    }
 }
 
 /* Interactive Solar System Preview */
