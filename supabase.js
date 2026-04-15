@@ -171,14 +171,19 @@ async function loadPlanets() {
 }
 
 function attachPlanetClickHandlers() {
-    setTimeout(() => {
-        document.querySelectorAll('.planet-row').forEach(row => {
-            row.onclick = () => showPlanetModal(row.dataset.planet);
-        });
-        document.querySelectorAll('.planet-card-mobile').forEach(card => {
-            card.onclick = () => showPlanetModal(card.dataset.planet);
-        });
-    }, 100);
+    document.addEventListener('click', function(e) {
+        const row = e.target.closest('.planet-row');
+        if (row) {
+            e.preventDefault();
+            showPlanetModal(row.dataset.planet);
+        }
+        
+        const card = e.target.closest('.planet-card-mobile');
+        if (card) {
+            e.preventDefault();
+            showPlanetModal(card.dataset.planet);
+        }
+    });
 }
 
 function showPlanetModal(planetName) {
