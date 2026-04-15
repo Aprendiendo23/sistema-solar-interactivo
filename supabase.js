@@ -247,4 +247,149 @@ function showToast(message) {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPlanets();
+    initQuiz();
 });
+
+const quizQuestions = [
+    {
+        question: "¿Cuál es el planeta más cercano al Sol?",
+        options: ["Venus", "Marte", "Mercurio", "Tierra"],
+        correct: 2
+    },
+    {
+        question: "¿Cuál es el planeta más grande del Sistema Solar?",
+        options: ["Saturno", "Júpiter", "Neptuno", "Urano"],
+        correct: 1
+    },
+    {
+        question: "¿Qué planeta es conocido como el planeta rojo?",
+        options: ["Venus", "Marte", "Júpiter", "Mercurio"],
+        correct: 1
+    },
+    {
+        question: "¿Cuál planeta tiene anillos visibles?",
+        options: ["Tierra", "Marte", "Saturno", "Mercurio"],
+        correct: 2
+    },
+    {
+        question: "¿Cuántos planetas hay en el Sistema Solar?",
+        options: ["7", "8", "9", "10"],
+        correct: 1
+    },
+    {
+        question: "El Sol es una estrella.",
+        options: ["Verdadero", "Falso"],
+        correct: 0
+    },
+    {
+        question: "La Tierra es el planeta más grande del Sistema Solar.",
+        options: ["Verdadero", "Falso"],
+        correct: 1
+    },
+    {
+        question: "Júpiter tiene más lunas que la Tierra.",
+        options: ["Verdadero", "Falso"],
+        correct: 0
+    },
+    {
+        question: "Neptuno está más cerca del Sol que Marte.",
+        options: ["Verdadero", "Falso"],
+        correct: 1
+    },
+    {
+        question: "El Sistema Solar gira alrededor del centro de la galaxia.",
+        options: ["Verdadero", "Falso"],
+        correct: 0
+    }
+];
+
+function initQuiz() {
+    const container = document.getElementById('quiz-container');
+    if (!container) return;
+    
+    container.innerHTML = quizQuestions.map((q, index) => `
+        <div class="quiz-question glass-card" id="question-${index}">
+            <div class="quiz-question-number">Pregunta ${index + 1}</div>
+            <p class="quiz-question-text">${q.question}</p>
+            <div class="quiz-options">
+                ${q.options.map((opt, optIndex) => `
+                    <button class="quiz-option" onclick="selectAnswer(${index}, ${optIndex})">
+                        <span class="option-letter">${String.fromCharCode(65 + optIndex)}</span>
+                        <span class="option-text">${opt}</span>
+                    </button>
+                `).join('')}
+            </div>
+            <div class="quiz-feedback" id="feedback-${index}"></div>
+        </div>
+    `).join('');
+}
+
+let answeredQuestions = {};
+
+function selectAnswer(questionIndex, optionIndex) {
+    const question = quizQuestions[questionIndex];
+    const isCorrect = optionIndex === question.correct;
+    answeredQuestions[questionIndex] = optionIndex;
+    
+    const questionEl = document.getElementById(`question-${questionIndex}`);
+    const feedbackEl = document.getElementById(`feedback-${questionIndex}`);
+    const buttons = questionEl.querySelectorAll('.quiz-option');
+    
+    buttons.forEach((btn, idx) => {
+        btn.classList.remove('selected', 'correct', 'incorrect');
+        if (idx === optionIndex) {
+            btn.classList.add('selected');
+        }
+        if (idx === question.correct) {
+            btn.classList.add('correct');
+        }
+        btn.disabled = true;
+    });
+    
+    feedbackEl.innerHTML = isCorrect 
+        ? '<span class="correct-text">¡Correcto!</span>'
+        : `<span class="incorrect-text">Incorrecto. La respuesta correcta es: ${question.options[question.correct]}</span>`;
+    
+    checkQuizComplete();
+}
+
+function checkQuizComplete() {
+    if (Object.keys(answeredQuestions).length === quizQuestions.length) {
+        showResults();
+    }
+}
+
+function showResults() {
+    let correct = 0;
+    quizQuestions.forEach((q, index) => {
+        if (answeredQuestions[index] === q.correct) {
+            correct++;
+        }
+    });
+    
+    const percentage = Math.round((correct / quizQuestions.length) * 100);
+    let message = '';
+    
+    if (percentage === 100) {
+        message = '¡Perfecto! ¡Eres un experto del Sistema Solar!';
+    } else if (percentage >= 70) {
+        message = '¡Muy bien! Tienes buenos conocimientos.';
+    } else if (percentage >= 50) {
+        message = '¡Sigue aprendiendo! Puedes mejorar.';
+    } else {
+        message = '¡Anímate a explorar más sobre el Sistema Solar!';
+    }
+    
+    document.getElementById('quiz-score').innerHTML = `
+        <div class="score-number">${correct}/${quizQuestions.length}</div>
+        <div class="score-percentage">${percentage}%</div>
+        <p class="score-message">${message}</p>
+    `;
+    document.getElementById('quiz-result').style.display = 'block';
+}
+
+function resetQuiz() {
+    answeredQuestions = {};
+    document.getElementById('quiz-result').style.display = 'none';
+    initQuiz();
+}
