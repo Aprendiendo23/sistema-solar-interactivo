@@ -1,7 +1,8 @@
 const SUPABASE_URL = 'https://gzdefxuoneiubpdfbxwo.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_9ozZb-57864iQUBgmw90nQ_Zz8ZyLri';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabase = window.supabase;
 
 let planetsData = [];
 
