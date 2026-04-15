@@ -110,7 +110,7 @@ async function loadPlanets() {
             tbody.innerHTML = planetsData.map((planet, index) => {
                 const details = planetDetails[planet.nombre] || {};
                 return `
-                    <tr class="planet-row" data-planet="${planet.nombre}" data-index="${index}">
+                    <tr class="planet-row" data-planet="${planet.nombre}" onclick="showPlanetModal('${planet.nombre}')">
                         <td>
                             <div class="planet-cell">
                                 <span class="planet-dot" style="background: ${details.color || '#888'}"></span>
@@ -130,7 +130,7 @@ async function loadPlanets() {
             cardsContainer.innerHTML = planetsData.map((planet) => {
                 const details = planetDetails[planet.nombre] || {};
                 return `
-                    <div class="planet-card-mobile" data-planet="${planet.nombre}">
+                    <div class="planet-card-mobile" data-planet="${planet.nombre}" onclick="showPlanetModal('${planet.nombre}')">
                         <div class="planet-card-header">
                             <span class="planet-card-dot" style="background: ${details.color || '#888'}; color: ${details.color || '#888'}"></span>
                             <span class="planet-card-name">${planet.nombre}</span>
@@ -139,8 +139,6 @@ async function loadPlanets() {
                     </div>
                 `;
             }).join('');
-            
-            attachPlanetClickHandlers();
         }
     } catch (error) {
         console.error('Error al cargar planetas:', error);
@@ -149,22 +147,6 @@ async function loadPlanets() {
         document.getElementById('planets-cards-container').innerHTML = 
             '<p class="text-center text-secondary" style="padding: 2rem;">Error al cargar datos</p>';
     }
-}
-
-function attachPlanetClickHandlers() {
-    document.addEventListener('click', function(e) {
-        const row = e.target.closest('.planet-row');
-        if (row) {
-            e.preventDefault();
-            showPlanetModal(row.dataset.planet);
-        }
-        
-        const card = e.target.closest('.planet-card-mobile');
-        if (card) {
-            e.preventDefault();
-            showPlanetModal(card.dataset.planet);
-        }
-    });
 }
 
 function showPlanetModal(planetName) {
